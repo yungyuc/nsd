@@ -1,0 +1,230 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[inner=1.5cm,outer=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,%
+citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false]%
+{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\usepackage{acronym}
+
+\usepackage{titlesec}
+\titlespacing{\paragraph}{0pt}{.3cm}{1em}
+\titlespacing{\subparagraph}{0pt}{.2cm}{1em}
+
+\usepackage{enumitem}
+\setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
+
+\pagestyle{plain}
+
+\begin{document}
+
+\begin{center}
+{\Large \textsc{Introduction to Numerical Software Development}}
+\end{center}
+\begin{center}
+2019
+\end{center}
+%\date{September 26, 2014}
+
+\begin{center}
+\rule{6in}{0.4pt}
+\begin{minipage}[t]{.75\textwidth}
+\begin{tabular}{llcccll}
+\textbf{Instructor:} & Yung-Yu Chen & & &  &
+\textbf{Time:} & TBD \\
+\textbf{Email:} & \href{mailto:yyc@solvcon.net}{yyc@solvcon.net} & & & &
+\textbf{Place:} & TBD
+\end{tabular}
+\end{minipage}
+\rule{6in}{0.4pt}
+\end{center}
+
+%\noindent\textbf{Course Pages:} \url{http://yourWebPage1.com/teaching}
+
+%\vskip.3cm
+%\noindent\textbf{Office Hours:}
+
+\paragraph{Objectives:}
+
+Numerical software turns mathematical descriptions into programs that operate
+on digital computers.  They may carry their own application, or express a
+physical application.  We call them the numerical methods.  The art of
+developing numerical software involves both the numerical methods and its
+engineering.  This course introduces the essential components to engineer such
+software.
+
+\paragraph{Prerequisites:}
+
+This is a graduate or senior level course open to all students who have taken
+engineering mathematics or equivalence.  Skills of using all the following
+tools in a Unix-like environment are required: bash, Python, C or C++, and Git.
+
+\paragraph{Lectures:}
+\begin{enumerate}
+\item Python and numpy
+\item C++ and computer architecture
+\item Fundamental engineering tools
+\item Memory management
+\item Matrix operations
+\item Cache optimization and SIMD
+\item Recap: modern C++
+\item Xtensor and numpy
+\item Pybind11 and cpython API
+\item Cpython internals
+\item High-performance software design
+\item Hybrid code organization
+\end{enumerate}
+
+\paragraph{Grading:} Homework 30\%, midterm exam: 30\%, project: 40\%.
+
+\paragraph{References:}
+\begin{itemize}
+\item Numerical analysis
+\item Effective Modern C++
+\item Source code: xtensor, pybind11, numpy, cpython
+\end{itemize}
+
+%\paragraph{Important Dates:}
+
+%\paragraph{Course Policy:}
+
+%\paragraph{Class Policy:}
+
+%\paragraph{Academic Honesty:}
+
+\clearpage
+
+\paragraph{Lecture Outlines:}
+
+\subparagraph{Lecture 1: Python and numpy.}  Numerical software is always
+developed as a platform.  It works like a library providing data structures and
+helpers to solve problems.  The users will use a scripting engine it provides
+to build applications.  Python is a popular choice for the scripting engine.
+
+\begin{itemize}
+\item Organize Python modules
+\item Numpy for array-centric code
+\item Singular value problems
+\item The Laplace equations
+\end{itemize}
+
+\subparagraph{Lecture 2: C++ and computer architecture.}  The low-level code of
+numerical software must be high-performance.  The industries chose C++ because
+it can take advantage of everything that a hardware architecture offers while
+using any level of abstraction.
+
+\begin{itemize}
+\item Introduce compiler tools
+\item Real numbers
+\item Von Neumann architecture
+\item Memory hierarchy
+\end{itemize}
+
+\subparagraph{Lecture 3: fundamental engineering practices.}  Writing computer
+code is only a fraction of the work to build computer software.  A large chunk
+of resources is spent in making sure the software delivers the results it
+should.  As in any engineering discipline, automation is key.
+
+\begin{itemize}
+\item Build system: make and cmake
+\item Version control: git and concept of centralized VCS
+\item Code review
+\item Automatic testing: google-test, py.test, and TravisCI
+\item Profiling: perf and timing
+\end{itemize}
+
+\subparagraph{Lecture 4: memory management.}  Numerical software tends to use
+as much memory as a workstation has.  There are two major reasons: (i) the
+applications usually need a lot of memory, and (ii) we trade memory for speed.
+
+\begin{itemize}
+\item Stack and heap
+\item Linux and POSIX memory manager
+\item C++ memory manager
+\item Linux memory report
+\end{itemize}
+
+\subparagraph{Lecture 5: matrix operations.}  As linear algebra is fundamental
+in almost everything uses mathematics, matrices are everywhere in numerical
+analysis.  There isn't shortage of linear algebraic software packages and it's
+critically important to understand how they work.
+
+\begin{itemize}
+\item Multi-dimensional array in C++ and other languages
+\item Matrix-matrix and matrix-vector operations
+\end{itemize}
+
+\subparagraph{Lecture 6: cache optimization and SIMD.}  To use all the cycles
+the data transfer between main memory and CPU must be minimized.
+
+\begin{itemize}
+\item Stride analysis; how cache greatly affects performance
+\item Tiling
+\item Single instruction multiple data (SIMD)
+\end{itemize}
+
+\subparagraph{Lecture 7: recap: modern C++.}  Some skills are important to
+writing maintainable code in C++.  We should stick to modern C++, that is the
+dialect exclusively uses C++ standard 11, 14, 17, and beyond.
+
+\begin{itemize}
+\item Curiously recursive template pattern (CRTP): static polymorphism
+\item Smart pointers
+\item Template meta-programming and compile-time computation
+\item Perfect forwarding
+\end{itemize}
+
+\subparagraph{Lecture 8: xtensor and numpy.}  We need the compile-time
+optimization enabled by static typing information, which is something numpy and
+Python cannot provide.  Xtensor, instead, gives it to us.
+
+\begin{itemize}
+\item C++ array operations
+\item Dynamic and static arrays
+\item Ownership management across C++ and Python
+\end{itemize}
+
+\subparagraph{Lecture 9: pybind11 and cpython API.}  High-performance code
+needs careful design for the data flow between the low-level implementation and
+the high-level scripting layer.
+
+\begin{itemize}
+\item Reference counting
+\item Introduce pybind11
+\item Cpython and pybind11 API for important Python types
+\end{itemize}
+
+\subparagraph{Lecture 10: cpython internals.}  Learn when Python is slow and
+when it can be worked around.
+
+\begin{itemize}
+\item Primitive numbers
+\item Tuple, list, and dict
+\end{itemize}
+
+\subparagraph{Lecture 11: high-performance software design.}  There are some
+general guidelines for high-performance code.  Although following them doesn't
+prevent you from slow code, ignoring them usually guarantees it.
+
+\begin{itemize}
+\item Array majoring
+\item Compact struct and encapsulating it
+\item Profiling and diagnostic hook
+\end{itemize}
+
+\subparagraph{Lecture 12: hybrid code organization.}  Numerical software is
+born to be fast.  In the development iterations performance always involves.
+This is the central idea of developing a hybrid system, and the code should be
+organized accordingly.
+
+\begin{itemize}
+\item Wrap around pybind11
+\item Straight dependency
+\end{itemize}
+
+\end{document}
