@@ -3,11 +3,16 @@
 \pagestyle{empty}
 \usepackage{graphicx}
 \usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
-\usepackage[usenames,dvipsnames]{color}
-\definecolor{darkblue}{rgb}{0,0,.6}
-\definecolor{darkred}{rgb}{.7,0,0}
-\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,%
-citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false]%
+\usepackage[printwatermark]{xwatermark}
+\usepackage{xcolor}
+%\usepackage[usenames,dvipsnames]{color}
+%\definecolor{darkblue}{rgb}{0,0,.6}
+%\definecolor{darkred}{rgb}{.7,0,0}
+%\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,%
+%citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false]%
+%{hyperref}
+\usepackage[colorlinks,pagebackref,pdfusetitle,%
+bookmarksnumbered,plainpages=false]%
 {hyperref}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \usepackage{acronym}
@@ -19,12 +24,15 @@ citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false]%
 \usepackage{enumitem}
 \setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
 
+\newwatermark[allpages,color=black!15,angle=55,scale=5,xpos=0,ypos=0]%
+{DRAFT}
+
 \pagestyle{plain}
 
 \begin{document}
 
 \begin{center}
-{\Large \textsc{Introduction to Numerical Software Development}}
+{\Large \textsc{Numerical Software Development}}
 \end{center}
 \begin{center}
 2019
