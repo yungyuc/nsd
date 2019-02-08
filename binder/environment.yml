@@ -1,0 +1,19 @@
+name: turgon
+channels:
+  - conda-forge
+dependencies:
+  - cmake
+  - python
+  - numpy
+  - pytest
+  - pybind11
+  - xtl
+  - xsimd
+  - xtensor
+  - xtensor-python
+  - pip:
+    - nbgitpuller
+    - sphinx-gallery
+    - pandas
+    - matplotlib
+    - notebook

@@ -1,0 +1,15 @@
+# Build tools
+build-essential
+make
+libc6-dev
+gcc-7
+g++-7
+curl
+git
+# LaTeX
+texlive-base
+texlive-latex-base
+texlive-latex-extra
+texlive-fonts-recommended
+texlive-pstricks
+texlive-extra-utils

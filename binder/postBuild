@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -ex
+
+rm -rf ${HOME}/spacetime/build
+mkdir -p ${HOME}/spacetime/build
+cd ${HOME}/spacetime/build
+cmake \
+  -DPYTHON_EXECUTABLE:FILEPATH=`which python3` \
+  -DCMAKE_INSTALL_PREFIX=${HOME}/spacetime \
+  -DCMAKE_BUILD_TYPE=Release \
+  ..
+make install

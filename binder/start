@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export PYTHONPATH=${HOME}/spacetime
+
+# Required by binder.
+exec "$@"
