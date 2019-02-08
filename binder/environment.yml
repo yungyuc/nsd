@@ -1,16 +1,14 @@
-name: turgon
+name: insd
 channels:
   - conda-forge
 dependencies:
-  - cmake
-  - python
-  - numpy
-  - pytest
-  - pybind11
-  - xtl
-  - xsimd
-  - xtensor
-  - xtensor-python
+  - xtensor=0.19.*
+  - xtensor-blas=0.15.*
+  - xeus-cling=0.4.11
+  - cmake=3.13.*
+  - python=3.7.*
+  - numpy=1.16.*
+  - pytest=4.2.*
   - pip:
     - nbgitpuller
     - sphinx-gallery
