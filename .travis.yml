@@ -31,7 +31,7 @@ matrix:
           - texlive-fonts-extra
           - texlive-pstricks
           - texlive-extra-utils
-          - ps2pdf
+          - ghostscript
 
 script:
   - make -C ${TRAVIS_BUILD_DIR}/note VERBOSE=${VERBOSITY:-0}
