@@ -28,6 +28,7 @@ matrix:
           - texlive-latex-base
           - texlive-latex-extra
           - texlive-fonts-recommended
+          - texlive-fonts-extra
           - texlive-pstricks
           - texlive-extra-utils
 
