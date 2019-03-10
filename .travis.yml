@@ -34,4 +34,4 @@ matrix:
           - ghostscript
 
 script:
-  - make -C ${TRAVIS_BUILD_DIR}/note VERBOSE=${VERBOSITY:-0}
+  - make -C ${TRAVIS_BUILD_DIR}/doc VERBOSE=${VERBOSITY:-0}
