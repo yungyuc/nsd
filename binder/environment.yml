@@ -4,6 +4,7 @@ channels:
 dependencies:
   - xtensor=0.19.*
   - xtensor-blas=0.15.*
+  - xtensor-python=0.22.*
   - xeus-cling=0.4.11
   - cmake=3.13.*
   - python=3.7.*
@@ -15,3 +16,5 @@ dependencies:
     - pandas
     - matplotlib
     - notebook
+    - cxxfilt==0.2.*
+    - https://github.com/aldanor/ipybind/tarball/master
