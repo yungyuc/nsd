@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 At step 0, we plainly make a script to do the work. The script isn't suitable
 for being imported.

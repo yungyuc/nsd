@@ -8,4 +8,5 @@ __all__ = [
 ]
 
 
-from ._core import count_line, main
+from ._core import count_line
+from ._core import main  # noqa: F401
