@@ -1,0 +1,14 @@
+*.o
+*.a
+*.so
+arrays
+cstdint
+distance
+float
+fpexc
+helloworld
+hellomain
+hellomain[0-9]*
+nlimits
+signness
+types
