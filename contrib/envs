@@ -1,0 +1,2 @@
+#!/bin/bash
+export CFLAGS="-I`python3-config --prefix`/include -I`python3-config --include` -I`python -c 'import numpy; print(numpy.get_include())'` -llapack"
