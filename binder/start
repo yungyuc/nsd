@@ -1,3 +1,4 @@
 #!/bin/bash
-export CFLAGS="-I$CONDA_PREFIX/include -I`python -c 'import numpy; print(numpy.get_include())'` -llapack"
+thiscwd="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
+source $thiscwd/../contrib/envs
 exec "$@"

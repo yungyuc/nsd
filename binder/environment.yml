@@ -1,14 +1,16 @@
-name: insd
+name: nsd
 channels:
   - conda-forge
 dependencies:
-  - xtensor=0.19.*
-  - xtensor-blas=0.15.*
-  - xtensor-python=0.22.*
-  - xeus-cling=0.4.11
+  - pip
+  - xtensor=0.20.*
+  - xtensor-blas=0.16.*
+  - xtensor-python=0.23.*
+  - xeus-cling=0.5.*
   - cmake=3.13.*
   - python=3.7.*
   - numpy=1.16.*
+  - scipy=1.3.*
   - pytest=4.2.*
   - pip:
     - nbgitpuller
@@ -16,5 +18,7 @@ dependencies:
     - pandas
     - matplotlib
     - notebook
+    - jupyterlab
+    - rise
     - cxxfilt==0.2.*
     - https://github.com/aldanor/ipybind/tarball/master
