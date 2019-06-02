@@ -25,6 +25,7 @@ matrix:
           - curl
           - git
           - texlive-base
+          - texlive-xetex
           - texlive-latex-base
           - texlive-latex-extra
           - texlive-fonts-recommended
