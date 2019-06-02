@@ -1,38 +1,68 @@
 # Numerical Software Development
 
-Copyright 2019, Yung-Yu Chen <yyc@solvcon.net>
-
-All rights reserved.
-
+Copyright 2019, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 [![Build Status](https://travis-ci.com/yungyuc/nsd.svg?branch=master)](https://travis-ci.com/yungyuc/nsd)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yungyuc/nsd/master)
 
-# Objectives
+**Objectives**: This course discusses the art to build numerical software, i.e.,
+computer programs applying numerical methods for solving mathematical or
+physical problems.  We will be using the combination of Python and C++ and
+related tools (e.g., [bash](https://www.gnu.org/software/bash/),
+[git](https://git-scm.com), [make](https://www.gnu.org/software/make/), etc.)
+to learn the modern development processes.  By completing this course, students
+will acquire the fundamental skills for developing modern numerical software.
 
-This course discusses how to organize code for numerical methods to solve
-mathematical or physical problems in modern development processes. We will be
-using the combination of bash, git, Python, C++, and related tools.
+**Prerequisites**: This is a graduate or senior level course open to students
+who have taken engineering mathematics or equivalence.  Working knowledge of
+Linux and Unix-like is required.  Prior knowledge to numerical methods is
+recommended.  The instructor uses English in the lectures and discussions.
 
-# Prerequisites
+# How to study
 
-This is a graduate or senior level course open to all students who have taken
-engineering mathematics or equivalence. Working knowledge of Linux and
-Unix-like is required. Prior knowledge to numerical methods is recommended. The
-instructor will use English to lecture and discuss.  Computer program homework
-and projects should be developed against a Linux environment.
+* This is a practical course.  No textbook is available for this specific
+  interdisciplinary subject.
+* To study the subject, students are required to research with online documents
+  and source code, and write programs to practice.
+* In-class instruction and [course notes](https://github.com/yungyuc/nsd) are
+  provided for guidance.
+* References:
+  * Python documentation: https://docs.python.org/3/
+  * Cppreference: https://en.cppreference.com/
+  * [Effective Modern C++](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/),
+     Scott Meyer, O'Reilly, 2014
+  * Source code: [cpython](https://github.com/python/cpython),
+    [numpy](https://github.com/numpy/numpy),
+    [xtensor](https://github.com/QuantStack/xtensor), and
+    [pybind11](https://github.com/pybind/pybind11)
 
-# Outline
+# Course design
 
-1. Python and numpy: computing platform with data structures and helpers
-2. C++ and computer architecture: high performance from hardware support
-3. Fundamental engineering tools: automation
-4. Memory management: host large problems and trade for speed
-5. Matrix operations: fast data access with arrays and linear algebra
-6. Cache optimization and SIMD: latency hiding and basic parallelism
-7. Modern C++: more than just templates
-8. Xtensor: arrays in C++
-9. Pybind11 and cpython API: have Python and C++ to talk to each other
-10. Cpython internals: how the open-source computing platform works
-11. High-performance software design: data-centric system design
-12. Hybrid code organization: manage the complexity of multi-languages
-    implementation
+* There are 15 or more lectures for the subjects of numerical software
+  developing using Python and C++.
+* There is usually homework given after a lecture to exercise the lectured
+  materials, and it usually requires students to write computer programs in
+  Python and/or C++.
+* Mid-term examination will be conducted to evaluate students' understandings
+  to the analytical materials.
+* Term project will be used to evaluate students' overall coding skills.
+  Presentation is required.  Failure to present results in <font
+  color="red">**0 point**</font> for this part.
+* Grading: homework 30%, mid-term exam: 30%, term project: 40%.
+* Lectures:
+  1. Python and numpy
+  2. C++ and computer architecture
+  3. Fundamental engineering practices
+  4. Memory management
+  5. Matrix operations
+  6. Cache optimization
+  7. SIMD
+  8. Modern C++ I: ownership and meta-programming
+  9. Modern C++ II: more than templates
+  10. xtensor: arrays in C++
+  11. pybind11: binding between Python and C++
+  12. cpython API: operate Python from C
+  13. Profiling
+  14. Array-oriented design
+  15. Advanced Python
+  16. (Optional) useful architectures for hybrid code
+  17. (Optional) application embedding Python
