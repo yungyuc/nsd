@@ -4,8 +4,8 @@ Copyright 2019, Yung-Yu Chen <yyc@solvcon.net>
 
 All rights reserved.
 
-[![Build Status](https://travis-ci.com/yungyuc/insd.svg?branch=master)](https://travis-ci.com/yungyuc/insd)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yungyuc/insd/master)
+[![Build Status](https://travis-ci.com/yungyuc/nsd.svg?branch=master)](https://travis-ci.com/yungyuc/nsd)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yungyuc/nsd/master)
 
 # Objectives
 
