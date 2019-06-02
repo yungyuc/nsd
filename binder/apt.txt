@@ -13,3 +13,4 @@ texlive-latex-extra
 texlive-fonts-recommended
 texlive-pstricks
 texlive-extra-utils
+ghostscript
