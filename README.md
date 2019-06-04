@@ -42,11 +42,11 @@ recommended.  The instructor uses English in the lectures and discussions.
 * There is usually homework given after a lecture to exercise the lectured
   materials, and it usually requires students to write computer programs in
   Python and/or C++.
-* Mid-term examination will be conducted to evaluate students' understandings
+* Mid-term examination will be conducted to assess students' understandings
   to the analytical materials.
-* Term project will be used to evaluate students' overall coding skills.
-  Presentation is required.  Failure to present results in <font
-  color="red">**0 point**</font> for this part.
+* Term project will be used to assess students' overall coding skills.
+  Presentation is required.  Failure to present results in **0 point** for this
+  part.
 * Grading: homework 30%, mid-term exam: 30%, term project: 40%.
 * Lectures:
   1. Python and numpy
