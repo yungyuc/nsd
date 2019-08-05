@@ -69,6 +69,14 @@ xtensor() {
 
 }
 
+xtensor_blas() {
+
+  cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
+  cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
+  install QuantStack xtensor-blas "${cmakeargs[@]}"
+
+}
+
 xtensor_python() {
 
   cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
@@ -85,6 +93,8 @@ elif [ $1 == "xsimd" ]; then
   xsimd
 elif [ $1 == "xtensor" ]; then
   xtensor
+elif [ $1 == "xtensor-blas" ]; then
+  xtensor_blas
 elif [ $1 == "xtensor-python" ]; then
   xtensor_python
 elif [ $1 == "everything" ]; then
@@ -92,5 +102,6 @@ elif [ $1 == "everything" ]; then
   xtl
   xsimd
   xtensor
+  xtensor_blas
   xtensor_python
 fi

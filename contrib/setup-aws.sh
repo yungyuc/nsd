@@ -122,6 +122,14 @@ xtensor() {
 
 }
 
+xtensor_blas() {
+
+  cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
+  cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
+  install QuantStack xtensor-blas "${cmakeargs[@]}"
+
+}
+
 xtensor_python() {
 
   cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
@@ -134,4 +142,5 @@ pybind11
 xtl
 xsimd
 xtensor
+xtensor_blas
 xtensor_python
