@@ -48,5 +48,90 @@ cat << EOF > ${HOME}/.bash_acct
 namemunge PATH ${HOME}/opt/conda/bin
 EOF
 
-${HOME}/opt/conda/bin/conda config --set channel_priority strict
-${HOME}/opt/conda/bin/conda update --all --yes
+export PATH="${HOME}/opt/conda/bin:$PATH"
+
+conda config --set channel_priority strict
+conda update --all --yes
+conda install --yes pip python numpy scipy pytest pandas matplotlib
+
+pip install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
+pip install https://github.com/aldanor/ipybind/tarball/master
+
+INSTALL_PREFIX=${INSTALL_PREFIX:-${HOME}/opt/conda}
+INSTALL_VERSION=${INSTALL_VERSION:-master}
+
+install() {
+
+  githuborg=$1
+  pkgname=$2
+  cmakeargs="${@:3}"
+  pkgbranch=${INSTALL_VERSION}
+  pkgfull=$pkgname-$pkgbranch
+  pkgrepo=https://github.com/$githuborg/$pkgname.git
+
+  workdir=$(mktemp -d /tmp/build.XXXXXXXXX)
+  echo "Work directory: $workdir"
+  mkdir -p $workdir
+  pushd $workdir
+  curl -sSL -o $pkgfull.tar.gz \
+    https://github.com/$githuborg/$pkgname/archive/$pkgbranch.tar.gz
+  rm -rf $pkgfull
+  tar xf $pkgfull.tar.gz
+  cd $pkgfull
+  mkdir -p build
+  cd build
+  cmake $cmakeargs ..
+  make install
+  popd
+  rm -rf $workdir
+
+}
+
+pybind11() {
+
+  cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
+  cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
+  cmakeargs+=("-DPYTHON_EXECUTABLE:FILEPATH=`which python3`")
+  cmakeargs+=("-DPYBIND11_TEST=OFF")
+  install pybind pybind11 "${cmakeargs[@]}"
+
+}
+
+xtl() {
+
+  cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
+  cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
+  install QuantStack xtl "${cmakeargs[@]}"
+
+}
+
+xsimd() {
+
+  cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
+  cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
+  cmakeargs+=("-DBUILD_TESTS=OFF")
+  install QuantStack xsimd "${cmakeargs[@]}"
+
+}
+
+xtensor() {
+
+  cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
+  cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
+  install QuantStack xtensor "${cmakeargs[@]}"
+
+}
+
+xtensor_python() {
+
+  cmakeargs=("-DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}")
+  cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
+  install QuantStack xtensor-python "${cmakeargs[@]}"
+
+}
+
+pybind11
+xtl
+xsimd
+xtensor
+xtensor_python
