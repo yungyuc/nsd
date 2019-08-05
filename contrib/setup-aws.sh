@@ -12,7 +12,8 @@ sudo dpkg-reconfigure --frontend noninteractive tzdata
 sudo apt-get -qy dist-upgrade
 
 # Install building tools.
-sudo apt-get -qy install sudo build-essential make cmake libc6-dev gcc-7 g++-7
+sudo apt-get -qy install sudo build-essential make cmake silversearcher-ag \
+  libc6-dev gcc-7 g++-7 gcc-multilib
 
 # Remove all trace of apt.
 sudo rm -rf /var/lib/apt/lists/*
@@ -47,8 +48,5 @@ cat << EOF > ${HOME}/.bash_acct
 namemunge PATH ${HOME}/opt/conda/bin
 EOF
 
+${HOME}/opt/conda/bin/conda config --set channel_priority strict
 ${HOME}/opt/conda/bin/conda update --all --yes
-
-# Set up conda forge
-#conda config --add channels conda-forge
-#conda config --set channel_priority strict
