@@ -1,5 +1,9 @@
 #!/bin/bash
 
-export CFLAGS="-I${YHROOT}/usr/${YHFLAVOR}/include $(python3.7-config --include) -I$(python3 -c 'import numpy as np; print(np.get_include())')"
+export CFLAGS="$(python3.7-config --includes) -I$(python3 -c 'import numpy as np; print(np.get_include())')"
 
-jupyter notebook
+if [ -n "${YHROOT}" ] ; then
+  export CFLAGS="-I${YHROOT}/usr/${YHFLAVOR}/include ${CFLAGS}"
+fi
+
+jupyter notebook "$@"
