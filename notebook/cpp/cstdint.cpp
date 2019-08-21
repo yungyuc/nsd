@@ -11,5 +11,5 @@ int main(int, char **)
     std::cout << "sizeof(uint32_t): " << sizeof(uint32_t) << std::endl;
     std::cout << "sizeof(int64_t): " << sizeof(int64_t) << std::endl;
     std::cout << "sizeof(uint64_t): " << sizeof(uint64_t) << std::endl;
-    return -1;
+    return 0;
 }

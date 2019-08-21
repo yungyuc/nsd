@@ -76,6 +76,6 @@ int main(int, char **)
     // error: static_assert failed "derived class must define dist()"
     //std::cout << "BadPoint(1, 1)::dist() = " << BadPoint(1,1).dist() << std::endl;
 
-    return -1;
+    return 0;
 }
 // vim: set ff=unix fenc=utf8 et sw=4 ts=4 sts=4:

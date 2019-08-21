@@ -7,5 +7,5 @@ int main(int, char **)
     std::cout << "sint: " << sint << std::endl;
     std::cout << "uint: " << uint << std::endl;
     if (sint > uint) { std::cout << "sint > uint, although it can't be" << std::endl; }
-    return -1;
+    return 0;
 }

@@ -7,5 +7,5 @@ int main(int, char **)
     std::cout << "x = (" << vx[0] << ", " << vx[1] << ")" << std::endl;
     std::cout << "y = (" << vy[0] << ", " << vy[1] << ")" << std::endl;
     std::cout << "x \\dot y = " << cblas_ddot(2, vx, 1, vy, 1) << std::endl;
-    return -1;
+    return 0;
 }
