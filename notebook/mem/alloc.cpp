@@ -196,7 +196,7 @@ int main(int argc, char ** argv)
     std::vector<size_t, MyAllocator<size_t>>(alloc).swap(vec1);
     std::cout << alloc << std::endl;
 
-    return -1;
+    return 0;
 }
 
 // vim: set ff=unix fenc=utf8 et sw=4 ts=4 sts=4:
