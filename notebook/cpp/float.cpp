@@ -27,5 +27,5 @@ int main(int, char **)
     std::cout << std::endl;
     std::cout << "                      sign exponent fraction" << std::endl;
 
-    return -1;
+    return 0;
 }

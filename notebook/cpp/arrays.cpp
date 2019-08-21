@@ -16,5 +16,5 @@ int main(int, char **)
     std::cout << "odata[-10]: " << odata[-10] << std::endl;
     std::cout << "*(data+40): " << *(data+40) << std::endl;
     std::cout << "*(odata-10): " << *(odata-10) << std::endl;
-    return -1;
+    return 0;
 }

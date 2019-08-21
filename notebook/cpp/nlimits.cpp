@@ -40,5 +40,5 @@ int main(int, char **)
               << std::numeric_limits<uint64_t>::max() << "\t"
               << std::numeric_limits<uint64_t>::epsilon() << "\t"
               << std::endl;
-    return -1;
+    return 0;
 }

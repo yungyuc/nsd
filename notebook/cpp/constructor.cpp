@@ -118,6 +118,6 @@ int main(int, char **)
                   << " y = " << line2.y(it) << std::endl;
     }
 
-    return -1;
+    return 0;
 }
 // vim: set ff=unix fenc=utf8 et sw=4 ts=4 sts=4:

@@ -31,5 +31,5 @@ int main(int, char **)
     std::cout << "std::numeric_limits<float>::min() / 10: " << v1 / 10 << std::endl;
     if (fetestexcept(FE_UNDERFLOW)) { std::cout << "  FE_UNDERFLOW" << std::endl; }
 
-    return -1;
+    return 0;
 }
