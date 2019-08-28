@@ -1,51 +1,28 @@
 FLAGS ?=
-CC = gcc
-CFLAGS = -std=c11 -O3 -g ${FLAGS}
+
+MKLROOT ?= /opt/intel/mkl
+MKLLINKLINE = ${MKLROOT}/lib/libmkl_intel_lp64.a ${MKLROOT}/lib/libmkl_sequential.a ${MKLROOT}/lib/libmkl_core.a -lpthread -lm -ldl
+VECLIB_HEADER_PATH ?= /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers
+
 CXX = g++
-CXXFLAGS = -std=c++17 -O3 -g ${FLAGS}
+CXXFLAGS = \
+	-std=c++17 -O3 -g -m64 \
+	-I${VECLIB_HEADER_PATH} \
+	-I${MKLROOT}/include \
+	${MKLLINKLINE} \
+	${FLAGS}
+
+BINS = \
+	pod_vector pod_matrix_auto pod_matrix_rowmajor pod_matrix_colmajor \
+	matrix_class matrix_vector matrix_matrix \
+	gesv
 
 .PHONY: default
-default: pod_vector pod_matrix_auto pod_matrix_rowmajor pod_matrix_colmajor \
-	matrix_class
+default: ${BINS}
 
-pod_vector.o: pod_vector.cpp Makefile
-	${CXX} ${CXXFLAGS} -o $@ -c $<
-
-pod_vector: pod_vector.o Makefile
-	${CXX} ${CXXFLAGS} -o $@ $<
-
-pod_matrix_auto.o: pod_matrix_auto.cpp Makefile
-	${CXX} ${CXXFLAGS} -o $@ -c $<
-
-pod_matrix_auto: pod_matrix_auto.o Makefile
-	${CXX} ${CXXFLAGS} -o $@ $<
-
-pod_matrix_rowmajor.o: pod_matrix_rowmajor.cpp Makefile
-	${CXX} ${CXXFLAGS} -o $@ -c $<
-
-pod_matrix_rowmajor: pod_matrix_rowmajor.o Makefile
-	${CXX} ${CXXFLAGS} -o $@ $<
-
-pod_matrix_colmajor.o: pod_matrix_colmajor.cpp Makefile
-	${CXX} ${CXXFLAGS} -o $@ -c $<
-
-pod_matrix_colmajor: pod_matrix_colmajor.o Makefile
-	${CXX} ${CXXFLAGS} -o $@ $<
-
-pod_bad_matrix.o: pod_bad_matrix.cpp Makefile
-	${CXX} ${CXXFLAGS} -o $@ -c $<
-
-pod_bad_matrix: pod_bad_matrix.o Makefile
-	${CXX} ${CXXFLAGS} -o $@ $<
-
-matrix_class.o: matrix_class.cpp Makefile
-	${CXX} ${CXXFLAGS} -o $@ -c $<
-
-matrix_class: matrix_class.o Makefile
+%: %.cpp Makefile
 	${CXX} ${CXXFLAGS} -o $@ $<
 
 .PHONY: clean
 clean:
-	rm -f *.o pod_vector \
-		pod_matrix_auto pod_matrix_rowmajor pod_matrix_colmajor \
-		matrix_class
+	rm -rf *.o *.dSYM/ ${BINS}
