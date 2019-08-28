@@ -1,0 +1,10 @@
+pod_vector
+pod_matrix_auto
+pod_matrix_rowmajor
+pod_matrix_colmajor
+matrix_class
+matrix_vector
+matrix_matrix
+gesv
+*.o
+*.dSYM
