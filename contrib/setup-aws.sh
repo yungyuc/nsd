@@ -52,7 +52,7 @@ export PATH="${HOME}/opt/conda/bin:$PATH"
 
 conda config --set channel_priority strict
 conda update --all --yes
-conda install --yes pip python numpy scipy pytest pandas matplotlib
+conda install --yes pip python numpy scipy pytest pandas matplotlib mkl-include
 
 pip install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
 pip install https://github.com/aldanor/ipybind/tarball/master
