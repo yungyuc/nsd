@@ -26,6 +26,7 @@ recommended.  The instructor uses English in the lectures and discussions.
 * In-class instruction and [course notes](https://github.com/yungyuc/nsd) are
   provided for guidance.
 * References:
+  * Computer Systems: A Programmer's Perspective, Randal E. Bryant and David R. O'Hallaron: https://csapp.cs.cmu.edu/
   * Python documentation: https://docs.python.org/3/
   * Cppreference: https://en.cppreference.com/
   * [Effective Modern C++](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/),
