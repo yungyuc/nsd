@@ -10,8 +10,13 @@ int main(int, char **)
 
     std::array<int, 3> arr1;
 
+    // Without bound check.
     for (size_t it=0; it<arr1.size(); ++it)
     { arr1[it] = 100+it; }
+
+    // With bound check.
+    for (size_t it=0; it<arr1.size(); ++it)
+    { arr1.at(it) = 100+it; }
 
     std::cout << "arr1:" << std::endl;
     for (int const v : arr1)
