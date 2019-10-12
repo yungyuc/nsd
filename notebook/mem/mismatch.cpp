@@ -2,6 +2,11 @@
 #include <cstdlib>
 #include <iostream>
 
+/*
+ * Memory allocated by `new` should be freed by `delete`, and `new[]` by
+ * `delete[]`.  Mixing the scalar and array operators will cause error.
+ */
+
 static std::atomic_size_t tot_bytes = 0;
 
 struct Block

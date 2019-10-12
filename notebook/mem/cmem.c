@@ -12,13 +12,49 @@ void * aligned_alloc(size_t alignment, size_t size)
 }
 #endif
 
-int64_t * inner();
+void outer();
+
+int main(int argc, char ** argv)
+{
+    printf("frame address of main: %p\n", __builtin_frame_address(0));
+
+    outer();
+
+    return 0;
+}
+
+// Will be called by outer();
+int64_t * inner()
+{
+    printf("frame address of inner: %p\n", __builtin_frame_address(0));
+
+    // An array on the stack.  It is popped away when execution leaves this
+    // function.  You cannot use the memory outside this function.
+    int64_t data_stack[32];
+
+    for (size_t it = 0; it < 32; ++it)
+    {
+        data_stack[it] = 100 + it;
+    }
+    printf("stack memory: %p\n", data_stack);
+
+    // A dynamic array.
+    int64_t * data_dynamic = (int64_t *) malloc(32 * sizeof(int64_t));
+
+    for (size_t it = 0; it < 32; ++it)
+    {
+        data_dynamic[it] = 200 + it;
+    }
+    printf("dynamic memory: %p\n", data_dynamic);
+
+    return data_dynamic;
+}
 
 void outer()
 {
     printf("frame address of outer: %p\n", __builtin_frame_address(0));
 
-    int64_t * data = inner();
+    int64_t * data = inner(); // Initialize the data.
     printf("data returned from inner: %p\n", &data);
 
     for (size_t it = 0; it < 32; ++it)
@@ -33,10 +69,12 @@ void outer()
     // You must free the memory after you finish using it.  Otherwise it will
     // remain in the process unclaimed, results in the "memory leak".
     free(data);
+    //free(data); // Double free results into error.
     printf("=== free tested\n");
 
-    /* You may not use the memory that is already freed.  The results is
-     * undefined.
+#if 0
+    // You may not use the memory that is already freed.  The results is
+    // undefined.
     for (size_t it = 0; it < 32; ++it)
     {
         if (data[it] != 200 + it)
@@ -44,7 +82,7 @@ void outer()
             printf("error\n");
         }
     }
-    */
+#endif
 
     // The following two allocations result in the same zero-initialized array.
     // But when the OS has already zero initialized the memory, calloc may run
@@ -74,41 +112,6 @@ void outer()
     free(data1);
     free(data2);
     printf("=== aligned_alloc tested\n");
-}
-
-int64_t * inner()
-{
-    printf("frame address of inner: %p\n", __builtin_frame_address(0));
-
-    // An array on the stack.  It is popped away when execution leaves this
-    // function.  You cannot use the memory outside this function.
-    int64_t data_stack[32];
-
-    for (size_t it = 0; it < 32; ++it)
-    {
-        data_stack[it] = 100 + it;
-    }
-    printf("stack memory: %p\n", data_stack);
-
-    // A dynamic array.
-    int64_t * data_dynamic = (int64_t *) malloc(32 * sizeof(int64_t));
-
-    for (size_t it = 0; it < 32; ++it)
-    {
-        data_dynamic[it] = 200 + it;
-    }
-    printf("dynamic memory: %p\n", data_dynamic);
-
-    return data_dynamic;
-}
-
-int main(int argc, char ** argv)
-{
-    printf("frame address of main: %p\n", __builtin_frame_address(0));
-
-    outer();
-
-    return 0;
 }
 
 // vim: set ff=unix fenc=utf8 et sw=4 ts=4 sts=4:

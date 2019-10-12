@@ -92,10 +92,10 @@ void placement()
     }
     std::cout << "=== placement new tested" << std::endl;
 
-    /*
-     * This induces undefined behavior.  Don't do this.
+#if 0
+    // This induces undefined behavior.  Don't do this.
     delete block;
-    */
+#endif
 
     // Instead of deleting the pointer block, call explicit the destructor and
     // delete the original buffer.

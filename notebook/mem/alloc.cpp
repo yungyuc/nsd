@@ -111,6 +111,9 @@ private:
 
 /**
  * Very simple allocator that counts the number of bytes allocated through it.
+ *
+ * It's made to demonstrate the STL allocator and only works in this example.
+ * A lot of modification is needed to use it in a real application.
  */
 template <class T>
 struct MyAllocator
