@@ -1,2 +1,4 @@
 skip_access
 locality
+matrix_matrix
+*.dSYM/
