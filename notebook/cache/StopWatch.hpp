@@ -32,9 +32,46 @@ struct StopWatch
 
 #elif __linux__
 
+#include <time.h>
+
 struct StopWatch
 {
-    double lap() { return 0; /* TODO */ }
+    StopWatch()
+    {
+        clock_getres(CLOCK_PROCESS_CPUTIME_ID, &m_res);
+        lap();
+    }
+
+    double lap()
+    {
+        m_start = m_end;
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &m_end);
+        return diff(m_start, m_end) * 1.e-9;
+    }
+
+    int64_t diff(timespec const & t1, timespec const & t2)
+    {
+        timespec temp;
+        int64_t nsec;
+        if ((t2.tv_nsec - t1.tv_nsec)<0)
+        {
+            nsec = 1000000000 + t2.tv_nsec - t1.tv_nsec;
+            nsec += 1000000000 * (t2.tv_sec - t1.tv_sec - 1);
+        }
+        else
+        {
+            nsec = t2.tv_nsec - t1.tv_nsec;
+            nsec += 1000000000 * (t2.tv_sec - t1.tv_sec);
+        }
+        return nsec;
+    }
+
+    timespec m_res;
+    timespec m_start;
+    timespec m_end;
+
 }; /* end struct StopWatch */
 
 #endif // __APPLE__
+
+// vim: set ff=unix fenc=utf8 et sw=4 ts=4 sts=4:

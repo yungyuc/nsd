@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <vector>
 #include <stdexcept>
+#include <functional>
 
 struct Matrix {
 
