@@ -48,7 +48,7 @@ public:
 
     ByteCounter(ByteCounter && other)
       : m_impl(other.m_impl)
-    { other.decref(); }
+    { incref(); }
 
     ByteCounter & operator=(ByteCounter && other)
     {
@@ -56,6 +56,7 @@ public:
         {
             decref();
             m_impl = other.m_impl;
+            incref();
         }
 
         return *this;
@@ -197,6 +198,15 @@ int main(int argc, char ** argv)
     std::cout << alloc << std::endl;
 
     std::vector<size_t, MyAllocator<size_t>>(alloc).swap(vec1);
+    std::cout << alloc << std::endl;
+
+    std::vector<size_t, MyAllocator<size_t>> vec2(1024, alloc);
+    std::cout << alloc << std::endl;
+
+    std::vector<size_t, MyAllocator<size_t>> vec3(std::move(vec2));
+    std::cout << alloc << std::endl;
+
+    std::vector<size_t, MyAllocator<size_t>>(alloc).swap(vec3);
     std::cout << alloc << std::endl;
 
     return 0;

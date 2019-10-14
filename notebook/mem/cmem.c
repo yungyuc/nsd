@@ -55,7 +55,7 @@ void outer()
     printf("frame address of outer: %p\n", __builtin_frame_address(0));
 
     int64_t * data = inner(); // Initialize the data.
-    printf("data returned from inner: %p\n", &data);
+    printf("data returned from inner: %p\n", data);
 
     for (size_t it = 0; it < 32; ++it)
     {
