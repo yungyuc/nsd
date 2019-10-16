@@ -27,7 +27,7 @@ CXXFLAGS := ${CXXFLAGS} \
 	${MKLLINKLINE} \
 	${FLAGS}
 
-BINS := locality skip_access matrix_matrix
+BINS := 01_skip_access 02_locality 03_matrix_matrix
 
 .PHONY: default
 default: ${BINS}

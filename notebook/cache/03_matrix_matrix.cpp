@@ -329,27 +329,16 @@ struct Block
         return *this;
     }
 
-    Block<N> & operator+= (Block<N> const & other);
+    Block<N> & operator+= (Block<N> const & other)
+    {
+        for (size_t i=0; i<N*N; ++i) { m_buffer[i] += other.m_buffer[i]; }
+        return *this;
+    }
 
     void save(Matrix & mat, size_t it, size_t jt);
 
     double m_buffer[N * N];
 };
-
-template<size_t N> Block<N> & Block<N>::operator+= (Block<N> const & other)
-{
-    for (size_t i=0; i<NDIM; ++i)
-    {
-        const size_t base = i*NDIM;
-
-        for (size_t j=0; j<NDIM; ++j)
-        {
-            m_buffer[base + j] += other.m_buffer[base + j];
-        }
-    }
-
-    return *this;
-}
 
 template<size_t N> void Block<N>::save(
     Matrix & mat, size_t it, size_t jt
