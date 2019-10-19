@@ -3,7 +3,7 @@
 
 void work(double * buffer, size_t width)
 {
-    // This won't work as width isn't known in compile time.
+    // This won't work since width isn't known in compile time.
     double (*matrix)[width] = reinterpret_cast<double (*)[width]>(buffer);
 
     for (size_t i=0; i<width; ++i) // the i-th row

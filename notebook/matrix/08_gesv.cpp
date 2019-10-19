@@ -13,14 +13,14 @@ class Matrix {
 
 public:
 
-    Matrix(size_t nrow, size_t ncol)
-      : m_nrow(nrow), m_ncol(ncol)
+    Matrix(size_t nrow, size_t ncol, bool column_major)
+      : m_nrow(nrow), m_ncol(ncol), m_column_major(column_major)
     {
         reset_buffer(nrow, ncol);
     }
 
-    Matrix(size_t nrow, size_t ncol, std::vector<double> const & vec)
-      : m_nrow(nrow), m_ncol(ncol)
+    Matrix(size_t nrow, size_t ncol, bool column_major, std::vector<double> const & vec)
+      : m_nrow(nrow), m_ncol(ncol), m_column_major(column_major)
     {
         reset_buffer(nrow, ncol);
         (*this) = vec;
@@ -47,7 +47,7 @@ public:
     }
 
     Matrix(Matrix const & other)
-      : m_nrow(other.m_nrow), m_ncol(other.m_ncol)
+      : m_nrow(other.m_nrow), m_ncol(other.m_ncol), m_column_major(other.m_column_major)
     {
         reset_buffer(other.m_nrow, other.m_ncol);
         for (size_t i=0; i<m_nrow; ++i)
@@ -77,7 +77,7 @@ public:
     }
 
     Matrix(Matrix && other)
-      : m_nrow(other.m_nrow), m_ncol(other.m_ncol)
+      : m_nrow(other.m_nrow), m_ncol(other.m_ncol), m_column_major(other.m_column_major)
     {
         reset_buffer(0, 0);
         std::swap(m_buffer, other.m_buffer);
@@ -90,7 +90,7 @@ public:
         std::swap(m_nrow, other.m_nrow);
         std::swap(m_ncol, other.m_ncol);
         std::swap(m_buffer, other.m_buffer);
-        m_transpose = other.m_transpose;
+        m_column_major = other.m_column_major;
         return *this;
     }
 
@@ -111,21 +111,12 @@ public:
 
     double * data() const { return m_buffer; }
 
-    bool is_transposed() const { return m_transpose; }
-
-    Matrix & transpose()
-    {
-        m_transpose = !m_transpose;
-        std::swap(m_nrow, m_ncol);
-        return *this;
-    }
-
 private:
 
     size_t index(size_t row, size_t col) const
     {
-        if (m_transpose) { return row          + col * m_nrow; }
-        else             { return row * m_ncol + col         ; }
+        if (m_column_major) { return row          + col * m_nrow; }
+        else                { return row * m_ncol + col         ; }
     }
 
     void reset_buffer(size_t nrow, size_t ncol)
@@ -140,40 +131,10 @@ private:
 
     size_t m_nrow = 0;
     size_t m_ncol = 0;
-    bool m_transpose = false;
+    bool m_column_major = false;
     double * m_buffer = nullptr;
 
 };
-
-/*
- * Naive matrix matrix multiplication.
- */
-Matrix operator*(Matrix const & mat1, Matrix const & mat2)
-{
-    if (mat1.ncol() != mat2.nrow())
-    {
-        throw std::out_of_range(
-            "the number of first matrix column "
-            "differs from that of second matrix row");
-    }
-
-    Matrix ret(mat1.nrow(), mat2.ncol());
-
-    for (size_t i=0; i<ret.nrow(); ++i)
-    {
-        for (size_t k=0; k<ret.ncol(); ++k)
-        {
-            double v = 0;
-            for (size_t j=0; j<mat1.ncol(); ++j)
-            {
-                v += mat1(i,j) * mat2(j,k);
-            }
-            ret(i,k) = v;
-        }
-    }
-
-    return ret;
-}
 
 std::ostream & operator << (std::ostream & ostr, Matrix const & mat)
 {
@@ -184,6 +145,12 @@ std::ostream & operator << (std::ostream & ostr, Matrix const & mat)
         {
             ostr << " " << std::setw(2) << mat(i, j);
         }
+    }
+
+    ostr << std::endl << " data: ";
+    for (size_t i=0; i<mat.size(); ++i)
+    {
+        ostr << " " << std::setw(2) << mat.data()[i];
     }
 
     return ostr;
@@ -205,22 +172,28 @@ int main(int argc, char ** argv)
     int status;
 
     std::cout << ">>> Solve Ax=b (row major)" << std::endl;
-    Matrix mat(n, n, std::vector<double>{3, 5, 2, 2, 1, 3, 4, 3, 2});
-    Matrix b = Matrix(2, n, std::vector<double>{57, 22, 41, 23, 12, 84}).transpose();
+    Matrix mat(n, n, false);
+    mat(0,0) = 3; mat(0,1) = 5; mat(0,2) = 2;
+    mat(1,0) = 2; mat(1,1) = 1; mat(1,2) = 3;
+    mat(2,0) = 4; mat(2,1) = 3; mat(2,2) = 2;
+    Matrix b(n, 2, false);
+    b(0,0) = 57; b(0,1) = 23;
+    b(1,0) = 22; b(1,1) = 12;
+    b(2,0) = 41; b(2,1) = 84;
     std::vector<int> ipiv(n);
 
     std::cout << "A:" << mat << std::endl;
     std::cout << "b:" << b << std::endl;
 
     status = LAPACKE_dgesv(
-        LAPACK_ROW_MAJOR // matrix_layout
-      , n // n
-      , b.ncol() // nrhs
-      , mat.data() // a
-      , mat.ncol() // lda
-      , ipiv.data() // ipiv
-      , b.data() // b
-      , b.ncol() // ldb
+        LAPACK_ROW_MAJOR // int matrix_layout
+      , n // lapack_int n
+      , b.ncol() // lapack_int nrhs
+      , mat.data() // double * a
+      , mat.ncol() // lapack_int lda
+      , ipiv.data() // lapack_int * ipiv
+      , b.data() // double * b
+      , b.ncol() // lapack_int ldb
       // for row major matrix, ldb becomes the trailing dimension.
     );
 
@@ -228,25 +201,31 @@ int main(int argc, char ** argv)
     std::cout << "dgesv status: " << status << std::endl;
 
     std::cout << ">>> Solve Ax=b (column major)" << std::endl;
-    Matrix mat2 = Matrix(n, n, std::vector<double>{3, 5, 2, 2, 1, 3, 4, 3, 2}).transpose();
-    Matrix b2(2, n, std::vector<double>{57, 22, 41, 23, 12, 84});
+    Matrix mat2 = Matrix(n, n, true);
+    mat2(0,0) = 3; mat2(0,1) = 5; mat2(0,2) = 2;
+    mat2(1,0) = 2; mat2(1,1) = 1; mat2(1,2) = 3;
+    mat2(2,0) = 4; mat2(2,1) = 3; mat2(2,2) = 2;
+    Matrix b2(n, 2, true);
+    b2(0,0) = 57; b2(0,1) = 23;
+    b2(1,0) = 22; b2(1,1) = 12;
+    b2(2,0) = 41; b2(2,1) = 84;
 
-    std::cout << "A^t:" << mat2 << std::endl;
-    std::cout << "b^t:" << b2 << std::endl;
+    std::cout << "A:" << mat2 << std::endl;
+    std::cout << "b:" << b2 << std::endl;
 
     status = LAPACKE_dgesv(
-        LAPACK_COL_MAJOR // matrix_layout
-      , n // n
-      , b2.nrow() // nrhs
-      , mat2.data() // a
-      , mat2.nrow() // lda
-      , ipiv.data() // ipiv
-      , b2.data() // b
-      , b2.ncol() // ldb
+        LAPACK_COL_MAJOR // int matrix_layout
+      , n // lapack_int n
+      , b2.ncol() // lapack_int nrhs
+      , mat2.data() // double * a
+      , mat2.nrow() // lapack_int lda
+      , ipiv.data() // lapack_int * ipiv
+      , b2.data() // double * b
+      , b2.nrow() // lapack_int ldb
       // for column major matrix, ldb remains the leading dimension.
     );
 
-    std::cout << "solution x^t:" << b2 << std::endl;
+    std::cout << "solution x:" << b2 << std::endl;
     std::cout << "dgesv status: " << status << std::endl;
 
     return 0;

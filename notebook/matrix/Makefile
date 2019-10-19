@@ -28,9 +28,9 @@ CXXFLAGS := ${CXXFLAGS} \
 	${FLAGS}
 
 BINS := \
-	pod_vector pod_matrix_auto pod_matrix_rowmajor pod_matrix_colmajor \
-	matrix_class matrix_vector matrix_matrix \
-	gesv
+	01_pod_vector 02_pod_matrix_auto 03_pod_matrix_rowmajor 04_pod_matrix_colmajor \
+	05_matrix_class 06_matrix_vector 07_matrix_matrix \
+	08_gesv
 
 .PHONY: default
 default: ${BINS}
