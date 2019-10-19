@@ -559,7 +559,7 @@ int main(int argc, char ** argv)
 {
     Matrix mat1(1 * 1024, 1 * 1024);
     initialize(mat1);
-    Matrix mat2 = mat1.transpose();
+    Matrix mat2 = mat1;
 
     Matrix mat_gold = time_tile("mkl", nullptr, mat1, mat2);
 
