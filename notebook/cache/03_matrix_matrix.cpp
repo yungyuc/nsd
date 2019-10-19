@@ -84,6 +84,8 @@ public:
       , m_elapsed(other.m_elapsed), m_nflo(other.m_nflo)
     {
         reset_buffer(0, 0);
+        std::swap(m_nrow, other.m_nrow);
+        std::swap(m_ncol, other.m_ncol);
         std::swap(m_buffer, other.m_buffer);
     }
 
