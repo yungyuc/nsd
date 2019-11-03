@@ -138,14 +138,14 @@ void check(float * rrr1, float * rrr2)
             }
         }
     }
-    std::cout << "Mismatch: " << mismatch_count;
     if (mismatch_count)
     {
+        std::cout << "Mismatch: " << mismatch_count;
         std::cout
             << ", wrong (relative error > " << error_tolerance << "): "
             << wrong_count;
+        std::cout << " / " << nelem << std::endl;
     }
-    std::cout << " / " << nelem << std::endl;
 }
 
 int main(int argc, char ** argv)
@@ -158,8 +158,6 @@ int main(int argc, char ** argv)
 
     std::cout << "width: " << width << std::endl;
     std::cout << "nelem: " << nelem << std::endl;
-    std::cout << "4k: 0x" << std::hex << 4096 << std::endl;
-    std::cout << "256/8: 0x" << std::hex << 256/8 << std::endl;
     std::cout << std::endl;
 
     std::cout << "arr: 0x" << std::hex << arr << std::endl;
