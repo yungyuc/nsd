@@ -93,9 +93,9 @@ void worker2(Data * data)
 int main(int argc, char ** argv)
 {
     Data * data = worker1();
-    std::cout << "[use case 1] Data pointer after worker 1: " << data << std::endl;
+    std::cout << "Data pointer after worker 1: " << data << std::endl;
     worker2(data);
-    std::cout << "[use case 1] Data pointer after worker 2: " << data << std::endl;
+    std::cout << "Data pointer after worker 2: " << data << std::endl;
 
     // You have to read the code of worker2 to know that data could be
     // destructed.  In addition, the Data class doesn't provide a
@@ -104,7 +104,7 @@ int main(int argc, char ** argv)
     // memory-safe code.
 #ifdef CRASHME // The fenced code causes double free.
     delete data;
-    std::cout << "[use case 1] Data pointer after delete: " << data << std::endl;
+    std::cout << "Data pointer after delete: " << data << std::endl;
 #endif
 }
 

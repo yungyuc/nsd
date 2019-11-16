@@ -90,17 +90,17 @@ void worker2(std::unique_ptr<Data> data)
 int main(int argc, char ** argv)
 {
     std::unique_ptr<Data> data = worker1();
-    std::cout << "[use case 1] Data pointer after worker 1: " << data.get() << std::endl;
+    std::cout << "Data pointer after worker 1: " << data.get() << std::endl;
 
 #ifdef COPYNOWORK
     worker2(data);
 #else
     worker2(std::move(data));
 #endif
-    std::cout << "[use case 1] Data pointer after worker 2: " << data.get() << std::endl;
+    std::cout << "Data pointer after worker 2: " << data.get() << std::endl;
 
     data.reset();
-    std::cout << "[use case 1] Data pointer after delete: " << data.get() << std::endl;
+    std::cout << "Data pointer after delete: " << data.get() << std::endl;
 }
 
 // vim: set et sw=4 ts=4 sts=4:
