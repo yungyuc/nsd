@@ -7,7 +7,12 @@ CXXFLAGS := ${CXXFLAGS} \
 
 LINKFLAGS :=
 
-BINS := 01_raw_pointer 02_reference 03_ownership
+BINS := \
+	01_raw_pointer \
+	02_reference \
+	03_ownership \
+	04_unique \
+	05_shared
 
 .PHONY: default
 default: ${BINS}
