@@ -1,0 +1,5 @@
+*.dSYM/
+*.o
+01_raw_pointer
+02_reference
+03_ownership
