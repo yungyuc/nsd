@@ -1,0 +1,7 @@
+*.dSYM/
+*.o
+01_fully
+02_duplicate
+03_fromthis
+04_cyclic
+05_weak
