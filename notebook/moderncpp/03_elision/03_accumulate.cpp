@@ -5,12 +5,6 @@
 #include <iterator>
 #include <vector>
 
-#ifdef MOVENOEXCEPT
-#define MOVEPOSTFIX noexcept
-#else
-#define MOVEPOSTFIX
-#endif
-
 class Data
 {
 
@@ -166,11 +160,13 @@ void outer2(size_t len)
 
 struct Accumulator
 {
+
 public:
-    // This can be called if consumers want the sub-operation one by one.
+    // This can be called if consumers want the sub-operation one by one, and
+    // make the code more testable. But it isn't really used in the example.
     std::vector<Data> inner1(size_t start, size_t len)
     {
-        std::cout << "** inner1 begins with " << start << std::endl;
+        std::cout << "** Accumulator::inner1 begins with " << start << std::endl;
         std::vector<Data> ret;
         ret.reserve(len);
         inner2(start, len, ret);
@@ -180,7 +176,7 @@ public:
 private:
     void inner2(size_t start, size_t len, std::vector<Data> & ret)
     {
-        std::cout << "** inner2 begins with " << start << std::endl;
+        std::cout << "** Accumulator::inner2 begins with " << start << std::endl;
         for (size_t it=0; it < len; ++it)
         {
             Data data(start+it);
@@ -190,21 +186,22 @@ private:
 
 public:
     // This is used when batch operation is in demand.
-    void outer2(size_t len)
+    void outer(size_t len)
     {
-        std::cout << "* outer2 begins" << std::endl;
+        std::cout << "* Accumulator::outer begins" << std::endl;
         result.reserve(len*(len+1)/2);
         for (size_t it=0; it < len; ++it)
         {
             std::cout << std::endl;
-            std::cout << "* outer2 loop it=" << it << " begins" << std::endl;
+            std::cout << "* Accumulator::outer loop it=" << it << " begins" << std::endl;
             inner2(result.size(), it+1, result);
         }
-        std::cout << "* outer2 result.size() = " << result.size() << std::endl << std::endl;
+        std::cout << "* Accumulator::outer result.size() = " << result.size() << std::endl << std::endl;
     }
 
 public:
     std::vector<Data> result;
+
 }; /* end struct Accumulator */
 
 int main(int argc, char ** argv)
@@ -218,7 +215,7 @@ int main(int argc, char ** argv)
 #elif OTYPE == 2
     outer2(3);
 #elif OTYPE == 3
-    Accumulator().outer2(3);
+    Accumulator().outer(3);
 #endif
 }
 
