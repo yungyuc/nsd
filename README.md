@@ -17,4 +17,4 @@ who have taken engineering mathematics or equivalence.  Working knowledge of
 Linux and Unix-like is required.  Prior knowledge to numerical methods is
 recommended.  The instructor uses English in the lectures and discussions.
 
-See [notebook](notebook) for more information.
+See [notebook](notebook/index.ipynb) for more information.
