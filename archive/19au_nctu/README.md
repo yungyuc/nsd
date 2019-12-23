@@ -1,8 +1,6 @@
 # Numerical Software Development
 
 Copyright 2019, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
-[![Build Status](https://travis-ci.com/yungyuc/nsd.svg?branch=master)](https://travis-ci.com/yungyuc/nsd)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yungyuc/nsd/master)
 
 **Objectives**: This course discusses the art to build numerical software, i.e.,
 computer programs applying numerical methods for solving mathematical or
@@ -67,3 +65,7 @@ recommended.  The instructor uses English in the lectures and discussions.
   15. Advanced Python
   16. (Optional) useful architectures for hybrid code
   17. (Optional) application embedding Python
+
+# Other links
+
+* https://timetable.nctu.edu.tw/?r=main/crsoutline&Acy=108&Sem=1&CrsNo=5262
