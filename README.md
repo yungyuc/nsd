@@ -17,4 +17,7 @@ who have taken engineering mathematics or equivalence.  Working knowledge of
 Linux and Unix-like is required.  Prior knowledge to numerical methods is
 recommended.  The instructor uses English in the lectures and discussions.
 
-See [notebook](notebook/index.ipynb) for more information.
+# Course notes
+
+* Under-development version: [notebook/](notebook/index.ipynb).
+* 2019 autumn at NCTU: [archive/19au_nctu/](archive/19au_nctu/index.ipynb).
