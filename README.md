@@ -19,5 +19,5 @@ recommended.  The instructor uses English in the lectures and discussions.
 
 # Course notes
 
-* Under-development version: [notebook/](notebook/index.ipynb).
-* 2019 autumn at NCTU: [archive/19au_nctu/](archive/19au_nctu/index.ipynb).
+* 2020 sprint at NCTU: [notebook/20sp_nctu](notebook/20sp_nctu/index.ipynb).
+* 2019 autumn at NCTU: [notebook/19au_nctu/](notebook/19au_nctu/index.ipynb).
