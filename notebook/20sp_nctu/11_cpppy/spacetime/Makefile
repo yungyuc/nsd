@@ -76,7 +76,7 @@ $(SPACETIME_ROOT)/libst/_libst$(pyextsuffix): $(BUILD_PATH)/_libst$(pyextsuffix)
 .PHONY: buildext
 buildext: $(SPACETIME_ROOT)/libst/_libst$(pyextsuffix)
 
-$(BUILD_PATH)/Makefile: CMakelists.txt Makefile
+$(BUILD_PATH)/Makefile: CMakeLists.txt Makefile
 	mkdir -p $(BUILD_PATH) ; \
 	cd $(BUILD_PATH) ; \
 	cmake $(SPACETIME_ROOT) \
