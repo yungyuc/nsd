@@ -15,6 +15,10 @@ jobs:
 
     steps:
 
+    - name: setup
+      run: |
+        echo "::add-path::${HOME}/opt/conda/bin"
+
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
@@ -23,26 +27,16 @@ jobs:
       if: matrix.os != 'macos-latest'
       run: |
         sudo apt-get -qy install \
-            openssh-client openssh-server liblapack-pic liblapack-dev \
-            build-essential make libc6-dev curl git texlive-base texlive-xetex \
-            texlive-latex-base texlive-latex-extra texlive-fonts-recommended \
-            texlive-fonts-extra texlive-pstricks texlive-extra-utils \
-            ghostscript \
-            curl git build-essential make cmake libc6-dev gcc-7 g++-7 \
-            python3.7 python3.7-dev python3.7-venv
-        sudo rm /usr/bin/python3
-        sudo ln -s python3.7 /usr/bin/python3
-        sudo pip3 install numpy pytest
+            curl build-essential make cmake libc6-dev gcc-7 g++-7 gcc-multilib
 
-    - name: dependency (conda)
+    - name: dependency (conda+pip+custom)
       run: |
         curl -sSL -o miniconda.sh \
           https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-        sudo bash miniconda.sh -b -p ${HOME}/opt/conda
+        bash miniconda.sh -b -p ${HOME}/opt/conda
         rm -rf miniconda.sh
 
         export PATH="${HOME}/opt/conda/bin:$PATH"
-
         conda config --set channel_priority strict
         conda update --all --yes
         conda install --yes pip python numpy scipy pytest pandas matplotlib mkl-include
@@ -50,40 +44,52 @@ jobs:
         pip install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
         pip install https://github.com/aldanor/ipybind/tarball/master
 
+        export INSTALL_PREFIX=${INSTALL_PREFIX:-${HOME}/opt/conda}
         contrib/install.sh everything
 
-    - name: latex
-      run: make -C doc VERBOSE=${VERBOSITY:-0}
+    - name: run notebook index
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/index.ipynb
 
-    - name: notebook
-      run: |
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/index.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/01_introduction/introduction.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/02_engineering/engineering.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/03_numpy/numpy.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/04_cpp/cpp.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/05_matrix/matrix.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/06_cache/cache.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/07_simd/simd.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/08_mem/mem.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/09_smart/smart.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/10_moderncpp/moderncpp.ipynb
-        #jupyter nbconvert --to notebook --inplace --execute \
-        #  notebook/20sp_nctu/11_cpppy/cpppy.ipynb
-        #jupyter nbconvert --to notebook --inplace --execute \
-        #  notebook/20sp_nctu/12_arraycode/arraycode.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/13_arraydesign/arraydesign.ipynb
-        jupyter nbconvert --to notebook --inplace --execute \
-          notebook/20sp_nctu/14_advpy/advpy.ipynb
+    - name: run notebook 01_introduction/introduction
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/01_introduction/introduction.ipynb
+
+    - name: run notebook 02_engineering/engineering
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/02_engineering/engineering.ipynb
+
+    - name: run notebook 03_numpy/numpy
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/03_numpy/numpy.ipynb
+
+    - name: run notebook 04_cpp/cpp
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/04_cpp/cpp.ipynb
+
+    - name: run notebook 05_matrix/matrix
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/05_matrix/matrix.ipynb
+
+    - name: run notebook 06_cache/cache
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/06_cache/cache.ipynb
+
+    - name: run notebook 07_simd/simd
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/07_simd/simd.ipynb
+
+    - name: run notebook 08_mem/mem
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/08_mem/mem.ipynb
+
+    - name: run notebook 09_smart/smart
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/09_smart/smart.ipynb
+
+    - name: run notebook 10_moderncpp/moderncpp
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/10_moderncpp/moderncpp.ipynb
+
+    - name: run notebook 11_cpppy/cpppy
+      if: false
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/11_cpppy/cpppy.ipynb
+
+    - name: run notebook 12_arraycode/arraycode
+      if: false
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/12_arraycode/arraycode.ipynb
+
+    - name: run notebook 13_arraydesign/arraydesign
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/13_arraydesign/arraydesign.ipynb
+
+    - name: run notebook 14_advpy/advpy
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20sp_nctu/14_advpy/advpy.ipynb
