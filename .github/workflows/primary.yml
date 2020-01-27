@@ -1,0 +1,38 @@
+name: primary
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+        matrix:
+          os: [ubuntu-18.04]
+
+        fail-fast: false
+
+    steps:
+
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: dependency (ubuntu)
+      if: matrix.os != 'macos-latest'
+      run: |
+        sudo apt-get -qy install \
+            openssh-client openssh-server liblapack-pic liblapack-dev \
+            build-essential make libc6-dev curl git texlive-base texlive-xetex \
+            texlive-latex-base texlive-latex-extra texlive-fonts-recommended \
+            texlive-fonts-extra texlive-pstricks texlive-extra-utils \
+            ghostscript \
+            curl git build-essential make cmake libc6-dev gcc-7 g++-7 \
+            python3.7 python3.7-dev python3.7-venv
+        sudo rm /usr/bin/python3
+        sudo ln -s python3.7 /usr/bin/python3
+        sudo pip3 install numpy pytest
+
+    - name: latex
+      run: make -C doc VERBOSE=${VERBOSITY:-0}
