@@ -34,5 +34,56 @@ jobs:
         sudo ln -s python3.7 /usr/bin/python3
         sudo pip3 install numpy pytest
 
+    - name: dependency (conda)
+      run: |
+        curl -sSL -o miniconda.sh \
+          https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        sudo bash miniconda.sh -b -p ${HOME}/opt/conda
+        rm -rf miniconda.sh
+
+        export PATH="${HOME}/opt/conda/bin:$PATH"
+
+        conda config --set channel_priority strict
+        conda update --all --yes
+        conda install --yes pip python numpy scipy pytest pandas matplotlib mkl-include
+
+        pip install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
+        pip install https://github.com/aldanor/ipybind/tarball/master
+
+        contrib/install.sh everything
+
     - name: latex
       run: make -C doc VERBOSE=${VERBOSITY:-0}
+
+    - name: notebook
+      run: |
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/index.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/01_introduction/introduction.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/02_engineering/engineering.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/03_numpy/numpy.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/04_cpp/cpp.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/05_matrix/matrix.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/06_cache/cache.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/07_simd/simd.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/08_mem/mem.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/09_smart/smart.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/10_moderncpp/moderncpp.ipynb
+        #jupyter nbconvert --to notebook --inplace --execute \
+        #  notebook/20sp_nctu/11_cpppy/cpppy.ipynb
+        #jupyter nbconvert --to notebook --inplace --execute \
+        #  notebook/20sp_nctu/12_arraycode/arraycode.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/13_arraydesign/arraydesign.ipynb
+        jupyter nbconvert --to notebook --inplace --execute \
+          notebook/20sp_nctu/14_advpy/advpy.ipynb
