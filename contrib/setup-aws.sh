@@ -17,7 +17,7 @@ if [ -z "$SKIP_APT" ] ; then
 
   # Install building tools.
   sudo apt-get -qy install tmux build-essential make cmake silversearcher-ag \
-    libc6-dev gcc-7 g++-7 gcc-multilib
+    libc6-dev gcc-7 g++-7 gcc-multilib python
 
   # Remove all trace of apt.
   sudo rm -rf /var/lib/apt/lists/*
