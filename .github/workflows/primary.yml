@@ -26,6 +26,7 @@ jobs:
     - name: dependency (ubuntu)
       if: matrix.os != 'macos-latest'
       run: |
+        sudo apt-get -q update
         sudo apt-get -qy install \
             curl build-essential make cmake libc6-dev gcc-7 g++-7 gcc-multilib
 
