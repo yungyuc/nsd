@@ -7,5 +7,8 @@ pod_bad_matrix
 06_matrix_vector
 07_matrix_matrix
 08_gesv
+09_geev
+10_syev
+11_gesvd
 *.o
 *.dSYM

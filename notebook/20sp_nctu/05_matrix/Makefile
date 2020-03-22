@@ -30,7 +30,7 @@ CXXFLAGS := ${CXXFLAGS} \
 BINS := \
 	01_pod_vector 02_pod_matrix_auto 03_pod_matrix_rowmajor 04_pod_matrix_colmajor \
 	05_matrix_class 06_matrix_vector 07_matrix_matrix \
-	08_gesv
+	08_gesv 09_geev 10_syev 11_gesvd
 
 .PHONY: default
 default: ${BINS}
