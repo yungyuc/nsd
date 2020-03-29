@@ -10,5 +10,6 @@ pod_bad_matrix
 09_geev
 10_syev
 11_gesvd
+12_gels
 *.o
 *.dSYM
