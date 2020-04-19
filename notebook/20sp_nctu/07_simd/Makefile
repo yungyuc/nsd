@@ -35,9 +35,11 @@ BINS :=
 default: ${BINS}
 	make -C 01_mul
 	make -C 02_fma
+	make -C 03_omp
 
 .PHONY: clean
 clean:
 	make -C 01_mul clean
 	make -C 02_fma clean
+	make -C 03_omp clean
 	rm -rf *.o *.dSYM/ ${BINS}

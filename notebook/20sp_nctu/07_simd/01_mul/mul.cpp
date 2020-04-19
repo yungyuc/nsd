@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
+#include <cmath>
 
 #ifdef __APPLE__
 // Macos hasn't implemented the C11 aligned_alloc as of the time 2019/8.
