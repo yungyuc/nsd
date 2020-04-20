@@ -19,7 +19,7 @@ void * aligned_alloc(size_t alignment, size_t size)
 }
 #endif
 
-constexpr const size_t width = 8;
+constexpr const size_t width = 8; // count of floating-point
 constexpr const size_t repeat = 1024 * 1024;
 constexpr const size_t nelem = width * repeat;
 
