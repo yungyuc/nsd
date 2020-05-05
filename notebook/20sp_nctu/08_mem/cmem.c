@@ -85,11 +85,18 @@ void outer()
 #endif
 
     // The following two allocations result in the same zero-initialized array.
-    // But when the OS has already zero initialized the memory, calloc may run
-    // faster than malloc-then-fill.
+    //
+    // The first one uses calloc.  If the OS returns the memory that is already
+    // zero-initialized, calloc knows, and it doesn't need to redo the zero
+    // initialization.
     data = (int64_t *) calloc(32, sizeof(int64_t));
     free(data);
+    // The second one uses malloc and manual initialization.  The malloc call
+    // does not provide any information about whether the memory is already
+    // zero-initialized.
     data = (int64_t *) malloc(32 * sizeof(int64_t));
+    // Even if the allocated memory was already zero-initialized by the OS, we
+    // still need to do the initialization.
     for (size_t it = 0; it < 32; ++it) { data[it] = 0; }
     free(data);
     printf("=== calloc tested\n");
