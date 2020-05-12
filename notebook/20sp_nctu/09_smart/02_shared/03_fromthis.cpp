@@ -62,7 +62,8 @@ public:
     {
         for (size_t it=0; it < size(); ++it)
         {
-            if ((*this)[it] != it) { return false; }
+            const int v = it;
+            if ((*this)[it] != v) { return false; }
         }
         return true;
     }
@@ -74,7 +75,7 @@ private:
 
 }; /* end class Data */
 
-int main(int argc, char ** argv)
+int main(int, char **)
 {
     std::shared_ptr<Data> data = Data::make();
     std::cout << "data.use_count(): " << data.use_count() << std::endl;

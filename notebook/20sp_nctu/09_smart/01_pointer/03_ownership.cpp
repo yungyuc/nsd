@@ -36,7 +36,8 @@ public:
     {
         for (size_t it=0; it < size(); ++it)
         {
-            if ((*this)[it] != it) { return false; }
+            const int v = it;
+            if ((*this)[it] != v) { return false; }
         }
         return true;
     }
@@ -90,7 +91,7 @@ void worker2(Data * data)
     }
 }
 
-int main(int argc, char ** argv)
+int main(int, char **)
 {
     Data * data = worker1();
     std::cout << "Data pointer after worker 1: " << data << std::endl;

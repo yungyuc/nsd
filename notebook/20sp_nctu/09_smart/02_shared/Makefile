@@ -2,7 +2,7 @@ FLAGS ?=
 
 CXX = g++
 CXXFLAGS := ${CXXFLAGS} \
-	-std=c++17 -g -O3 -m64 \
+	-std=c++17 -g -O3 -m64 -Wall -Wextra -Werror \
 	${FLAGS}
 
 LINKFLAGS :=
