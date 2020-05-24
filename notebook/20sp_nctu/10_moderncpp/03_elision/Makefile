@@ -4,7 +4,7 @@ OPT ?= -O3
 
 CXX = g++
 CXXFLAGS := ${CXXFLAGS} \
-	-std=c++17 -g ${OPT} -m64 \
+	-std=c++17 -g ${OPT} \
 	${FLAGS}
 
 LINKFLAGS :=
