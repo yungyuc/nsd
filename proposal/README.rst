@@ -28,4 +28,5 @@ The directory:
 
 * `000_template <000_template/>`__: general proposal template.
 * `001_unstmesh_part <001_unstmesh_part>`__: unstructured mesh partitioning
-  (unstpart)
+  (unstpart).
+* `002_space_search <002_space_search>`__: spatial search (spacesearch).
