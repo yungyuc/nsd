@@ -74,7 +74,17 @@ each item before the project starts.
 The schedule is expected to be adjusted during the development.  A schedule to
 accurately predict everything in the development is impossible and unnecessary.
 But the initial estimate is important, for the baseline becomes concrete when
-we adjust the plan.
+we adjust the plan.  To start, it is OK to list the items to do on a weekly
+basis.  Assume the development of the project takes 8 weeks:
+
+* Week 1:
+* Week 2:
+* Week 3:
+* Week 4:
+* Week 5:
+* Week 6:
+* Week 7:
+* Week 8:
 
 References
 ==========
