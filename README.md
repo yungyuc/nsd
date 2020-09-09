@@ -25,7 +25,7 @@ Copyright 2020, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 
 * This is a practical course.  No textbook is available for this specific interdisciplinary subject.
 * To study the subject, students are required to research with online documents and source code, and write programs to practice.
-* In-class instruction and [course notes](https://github.com/yungyuc/nsd) are provided for guidance.
+* In-class instruction and [course notes](https://yungyuc.github.com/nsd) are provided for guidance.
 * References:
   * Computer Systems: A Programmer's Perspective, Randal E. Bryant and David R. O'Hallaron: https://csapp.cs.cmu.edu/
   * Python documentation: https://docs.python.org/3/
@@ -40,9 +40,9 @@ Copyright 2020, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 * W3 (9/28) Lecture 3: Python and numpy (*term project proposal start*)
 * W4 (10/5) Lecture 4: C++ and computer architecture (*homework \#2*)
 * W5 (10/12) Lecture 5: Matrix operations
-* W6 (10/19) Lecture 6: Cache optimization (*homework \#3*)
-* W7 (10/26) Lecture 7: SIMD (*term project proposal due*)
-* W8 (11/2) Mid-term examination (term project proposal submission due on MM/DD)
+* W6 (10/19) Lecture 6: Cache optimization (*homework \#3*) (*term project proposal due*)
+* W7 (10/26) Lecture 7: SIMD
+* W8 (11/2) Mid-term examination
 * W9 (11/9) Lecture 8: Memory management (*homework \#4*)
 * W10 (11/16) Lecture 9: Ownership and smart pointers
 * W11 (11/23) Lecture 10: Modern C++ (*homework \#5*)
