@@ -299,4 +299,4 @@ Advanced topics in Python programming.
 
 # Miscellaneous
 
-* NCTU course link: https://timetable.nctu.edu.tw/?r=main/crsoutline&Acy=109&Sem=1&CrsNo=5285
+* NCTU course link: [https://timetable.nctu.edu.tw/?r=main/crsoutline&Acy=109&Sem=1&CrsNo=5285](https://timetable.nctu.edu.tw/?r=main/crsoutline&Acy=109&Sem=1&CrsNo=5285)
