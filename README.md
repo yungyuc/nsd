@@ -1,12 +1,12 @@
 # Numerical Software Development Course Notes
 
-Copyright 2019, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
+Copyright 2020, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 
 ![Build Status](https://github.com/yungyuc/nsd/workflows/primary/badge.svg)
 
-* 2020 autumn at NCTU: [notebook/20au_nctu/](notebook/20au_nctu/index.ipynb).
-* 2020 spring at NCTU: [notebook/20sp_nctu/](notebook/20sp_nctu/index.ipynb).
-* 2019 autumn at NCTU: [notebook/19au_nctu/](notebook/19au_nctu/index.ipynb).
+* 2020 autumn at NCTU: [notebook/20au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/index.ipynb).
+* 2020 spring at NCTU: [notebook/20sp_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20sp_nctu/index.ipynb).
+* 2019 autumn at NCTU: [notebook/19au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/19au_nctu/index.ipynb).
 
 **Objectives**: This course discusses the art to build numerical software, i.e., computer programs applying numerical methods for solving mathematical or physical problems.  We will be using the combination of Python and C++ and related tools (e.g., [bash](https://www.gnu.org/software/bash/), [git](https://git-scm.com), [make](https://www.gnu.org/software/make/), etc.) to learn the modern development processes.  By completing this course, students will acquire the fundamental skills for developing modern numerical software.
 
@@ -35,26 +35,26 @@ Copyright 2019, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 
 # Course schedule
 
-* W1 (9/14) [Lecture 1](#Lecture-1-Introduction): Introduction
-* W2 (9/21) [Lecture 2](#Lecture-2-Fundamental-engineering-practices): Fundamental engineering practices (*homework \#1*)
-* W3 (9/28) [Lecture 3](#Lecture-3-Python-and-numpy): Python and numpy (*term project proposal start*)
-* W4 (10/5) [Lecture 4](#Lecture-4-C++-and-computer-architecture): C++ and computer architecture (*homework \#2*)
-* W5 (10/12) [Lecture 5](#Lecture-5-Matrix-operations): Matrix operations
-* W6 (10/19) [Lecture 6](#Lecture-6-Cache-optimization): Cache optimization (*homework \#3*)
-* W7 (10/26) [Lecture 7](#Lecture-7-SIMD): SIMD (*term project proposal due*)
-* W8 (11/2) Mid-term examination (term project proposal submission due on 4/29)
-* W9 (11/9) [Lecture 8](#Lecture-8-Memory-management): Memory management (*homework \#4*)
-* W10 (11/16) [Lecture 9](#Lecture-9-Smart-pointers): Ownership and smart pointers
-* W11 (11/23) [Lecture 10](#Lecture-10-Modern-C++): Modern C++ (*homework \#5*)
-* W12 (11/30) [Lecture 11](#Lecture-11-C++-and-C-for-Python): C++ and C for Python
-* W13 (12/7) [Lecture 12](#Lecture-12-Array-code-in-C++): Array code in C++ (*homework \#6*)
-* W14 (12/14) [Lecture 13](#Lecture-13-Array-oriented-design): Array-oriented design
-* W15 (12/21) [Lecture 14](#Lecture-14-Advanced-Python): Advanced Python
+* W1 (9/14) Lecture 1: Introduction
+* W2 (9/21) Lecture 2: Fundamental engineering practices (*homework \#1*)
+* W3 (9/28) Lecture 3: Python and numpy (*term project proposal start*)
+* W4 (10/5) Lecture 4: C++ and computer architecture (*homework \#2*)
+* W5 (10/12) Lecture 5: Matrix operations
+* W6 (10/19) Lecture 6: Cache optimization (*homework \#3*)
+* W7 (10/26) Lecture 7: SIMD (*term project proposal due*)
+* W8 (11/2) Mid-term examination (term project proposal submission due on MM/DD)
+* W9 (11/9) Lecture 8: Memory management (*homework \#4*)
+* W10 (11/16) Lecture 9: Ownership and smart pointers
+* W11 (11/23) Lecture 10: Modern C++ (*homework \#5*)
+* W12 (11/30) Lecture 11: C++ and C for Python
+* W13 (12/7) Lecture 12: Array code in C++ (*homework \#6*)
+* W14 (12/14) Lecture 13: Array-oriented design
+* W15 (12/21) Lecture 14: Advanced Python
 * W16 (12/28) Term project presentation
 * W17 (1/4) No meeting (optional lecture is not planned)
 * W18 (1/11) No meeting (optional lecture is not planned)
 
-# Lecture 1 [Introduction](01_introduction/introduction.ipynb)
+# Lecture 1 [Introduction](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/01_introduction/introduction.ipynb)
 
 1. Part 1: What is numerical software
    1. Why develop numerical software
@@ -69,9 +69,7 @@ Copyright 2019, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
    1. Runtime environment: Linux and AWS
    2. Jupyter notebook
 
-([bare notebook](01_introduction/introduction_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 2 [Fundamental engineering practices](02_engineering/engineering.ipynb)
+# Lecture 2 [Fundamental engineering practices](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/02_engineering/engineering.ipynb)
 
 A large chunk of efforts is spent in the infrastructure for coding.  The key to the engineering system is automation.
 
@@ -91,9 +89,7 @@ A large chunk of efforts is spent in the infrastructure for coding.  The key to 
       2. System time and user time
       3. Python timing tools
 
-([bare notebook](02_engineering/engineering_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 3 [Python and numpy](03_numpy/numpy.ipynb)
+# Lecture 3 [Python and numpy](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/03_numpy/numpy.ipynb)
 
 Python is a popular choice for the scripting engine that makes the numerical software work as a platform.
 
@@ -114,9 +110,7 @@ The platform works like a library providing data structures and helpers to solve
    2. Linear algebra using numpy ans scipy
    3. Package management wtih conda and pip
 
-([bare notebook](03_numpy/numpy_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 4 [C++ and computer architecture](04_cpp/cpp.ipynb)
+# Lecture 4 [C++ and computer architecture](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/04_cpp/cpp.ipynb)
 
 The low-level code of numerical software must be high-performance.  The industries chose C++ because it can take advantage of everything that a hardware architecture offers while using any level of abstraction.
 
@@ -138,9 +132,7 @@ The low-level code of numerical software must be high-performance.  The industri
    2. std::array, std::list
    3. std::map, std::set, std::unordered_map, std::unordered_set
 
-([bare notebook](04_cpp/cpp_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 5 [Matrix operations](05_matrix/matrix.ipynb)
+# Lecture 5 [Matrix operations](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/05_matrix/matrix.ipynb)
 
 Matrices are everywhere in numerical analysis.  Arrays are the fundamental data structure and used for matrix-vector, matrix-matrix, and other linear algebraic operations.
 
@@ -157,9 +149,7 @@ Matrices are everywhere in numerical analysis.  Arrays are the fundamental data 
    1. Eigenvalue and singular value problems
    1. Least square problems
 
-([bare notebook](05_matrix/matrix_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 6 [Cache optimization](06_cache/cache.ipynb)
+# Lecture 6 [Cache optimization](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/06_cache/cache.ipynb)
 
 How cache works, its importance to performance, and optimization with cache.
 
@@ -171,9 +161,7 @@ How cache works, its importance to performance, and optimization with cache.
    4. Array majoring in numpy
 3. Tiling
 
-([bare notebook](06_cache/cache_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 7 [SIMD](07_simd/simd.ipynb)
+# Lecture 7 [SIMD](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/07_simd/simd.ipynb)
 
 Parallelism and x86 assembly for SIMD.
 
@@ -187,9 +175,7 @@ Parallelism and x86 assembly for SIMD.
    3. Symbol table
    4. Inspect assembly: 1, 3, 5 multiplications
 
-([bare notebook](07_simd/simd_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 8 [Memory management](08_mem/mem.ipynb)
+# Lecture 8 [Memory management](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/08_mem/mem.ipynb)
 
 Numerical software tends to use as much memory as a workstation has.  The memory has two major uses: (i) to hold the required huge amount of data, and (ii) to gain speed.
 
@@ -199,9 +185,7 @@ Numerical software tends to use as much memory as a workstation has.  The memory
 4. STL allocator API
 3. Object counter
 
-([bare notebook](08_mem/mem_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 9 [Ownership and smart pointers](09_smart/smart.ipynb)
+# Lecture 9 [Ownership and smart pointers](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/09_smart/smart.ipynb)
 
 Ownership and memory management using C++ smart pointers.
 
@@ -217,9 +201,7 @@ Ownership and memory management using C++ smart pointers.
     2. Get `shared_ptr` from `this`
     3. Cyclic reference and `weak_ptr`
 
-([bare notebook](09_smart/smart_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 10 [Modern C++](10_moderncpp/moderncpp.ipynb)
+# Lecture 10 [Modern C++](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/10_moderncpp/moderncpp.ipynb)
 
 Copy elision and move semantics.  Variadic template and perfect forwarding.  Closure.
 
@@ -241,9 +223,7 @@ Copy elision and move semantics.  Variadic template and perfect forwarding.  Clo
 7. Closure
     1. Comments on functional style
 
-([bare notebook](10_moderncpp/moderncpp_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 11 [C++ and C for Python](11_cpppy/cpppy.ipynb)
+# Lecture 11 [C++ and C for Python](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/11_cpppy/cpppy.ipynb)
 
 Use C++ and C to control the CPython interpreter.
 
@@ -281,9 +261,7 @@ Use C++ and C to control the CPython interpreter.
     2. Small memory optimization
     3. Tracemalloc
 
-([bare notebook](11_cpppy/cpppy_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 12 [Array code in C++](12_arraycode/arraycode.ipynb)
+# Lecture 12 [Array code in C++](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/12_arraycode/arraycode.ipynb)
 
 Dissect the array-based code and element-based code and when to use them.
 
@@ -292,9 +270,7 @@ Dissect the array-based code and element-based code and when to use them.
 3. Xtensor: write iterative code in C++ speed using arrays
 4. Effect of house-keeping code
 
-([bare notebook](12_arraycode/arraycode_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 13 [Array-oriented design](13_arraydesign/arraydesign.ipynb)
+# Lecture 13 [Array-oriented design](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/13_arraydesign/arraydesign.ipynb)
 
 Software architecture that take advantage of array-based code.
 
@@ -302,9 +278,7 @@ Software architecture that take advantage of array-based code.
 2. Conversion between dynamic and static semantics
 3. Insert profiling code
 
-([bare notebook](13_arraydesign/arraydesign_bare.ipynb)) ([schedule toc](#Course-schedule))
-
-# Lecture 14 [Advanced Python](14_advpy/advpy.ipynb)
+# Lecture 14 [Advanced Python](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/14_advpy/advpy.ipynb)
 
 Advanced topics in Python programming.
 
@@ -322,8 +296,6 @@ Advanced topics in Python programming.
    1. Method resolution order (mro)
    2. Abstract base class (abc)
    3. Abstract method
-
-([bare notebook](14_advpy/advpy_bare.ipynb)) ([schedule toc](#Course-schedule))
 
 # Miscellaneous
 
