@@ -82,7 +82,8 @@ jobs:
       run: jupyter nbconvert --to notebook --inplace --execute notebook/20au_nctu/10_moderncpp/moderncpp.ipynb
 
     - name: run notebook 11_cpppy/cpppy
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/20au_nctu/11_cpppy/cpppy.ipynb --ExecutePreprocessor.timeout=180
+      if: false # disable before dropping libst dependency
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/20au_nctu/11_cpppy/cpppy.ipynb
 
     - name: run notebook 12_arraycode/arraycode
       if: false # fails with %%pybind11 -c="-O3"
