@@ -36,8 +36,8 @@ Copyright 2020, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 # Course schedule
 
 * W1 (9/14) Lecture 1: Introduction
-* W2 (9/21) Lecture 2: Fundamental engineering practices (*homework \#1*)
-* W3 (9/28) Lecture 3: Python and numpy (*term project proposal start*)
+* W2 (9/21) Lecture 2: Fundamental engineering practices
+* W3 (9/28) Lecture 3: Python and numpy (*homework \#1*) (*term project proposal start*)
 * W4 (10/5) Lecture 4: C++ and computer architecture (*homework \#2*)
 * W5 (10/12) Lecture 5: Matrix operations
 * W6 (10/19) Lecture 6: Cache optimization (*homework \#3*) (*term project proposal due*)
