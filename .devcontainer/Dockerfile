@@ -34,7 +34,7 @@ RUN \
   apt-get -qqy update && \
   apt-get -qy install --no-install-recommends \
     sudo curl git build-essential make cmake libc6-dev gcc-10 g++-10 \
-    clang-tidy radare2 \
+    clang-tidy radare2 intel-mkl \
     python3 python3-pip python3-dev python3-venv && \
   apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
