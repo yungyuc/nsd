@@ -16,8 +16,7 @@ jobs:
     steps:
 
     - name: setup
-      run: |
-        echo "::add-path::${HOME}/opt/conda/bin"
+      run: echo "${HOME}/opt/conda/bin" >> $GITHUB_PATH
 
     - uses: actions/checkout@v1
       with:
