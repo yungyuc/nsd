@@ -18,9 +18,16 @@ public:
 
     operator bool() const { return m_status; }
 
+    ~IsCopied() = default;
+
 private:
 
     IsCopied() : m_status(false) {}
+
+    IsCopied(IsCopied const & ) = delete;
+    IsCopied(IsCopied       &&) = delete;
+    IsCopied & operator=(IsCopied const & ) = delete;
+    IsCopied & operator=(IsCopied       &&) = delete;
 
     bool m_status;
 

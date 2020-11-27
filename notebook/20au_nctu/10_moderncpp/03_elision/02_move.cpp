@@ -145,7 +145,7 @@ Data worker2()
     manipulate_with_reference(data, 8);
 
 #ifdef FORCEMOVE
-    // Implicit move semantics destroys copy elision.
+    // Explicit move semantics destroys copy elision.
     return std::move(data);
 #else
     return data;
