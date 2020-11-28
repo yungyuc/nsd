@@ -98,7 +98,7 @@ The platform works like a library providing data structures and helpers to solve
 1. Organize Python modules
    1. Scripts
    2. Modules
-   3. Package
+   3. Packages
 2. Use numpy for array-oriented code
    1. Data type
    2. Construction
@@ -107,7 +107,7 @@ The platform works like a library providing data structures and helpers to solve
    5. Broadcasting
 3. Use tools for numerical analysis
    1. Matplotlib
-   2. Linear algebra using numpy ans scipy
+   2. Linear algebra using numpy and scipy
    3. Package management wtih conda and pip
 
 # Lecture 4 [C++ and computer architecture](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/04_cpp/cpp.ipynb)
