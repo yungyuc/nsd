@@ -124,7 +124,7 @@ The low-level code of numerical software must be high-performance.  The industri
    4. Numeric limit
 2. Object-oriented programming
    1. Class, encapsulation, accessor, reference type
-   2. constructor and destructor
+   2. Constructor and destructor
    3. Polymorphism and RTTI
    4. CRTP
 3. Standard template library (STL)
