@@ -10,6 +10,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE BOOL "Export compile commands")
 
+if(NOT SKIP_PYTHON_EXECUTABLE)
+    find_program(PYTHON_EXECUTABLE python3)
+    message(STATUS "use PYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}")
+endif()
+
 option(BUILD_GTESTS "build libst google-test suite" ON)
 option(HIDE_SYMBOL "hide the symbols of python wrapper" OFF)
 option(DEBUG_SYMBOL "add debug information" ON)

@@ -227,36 +227,36 @@ Copy elision and move semantics.  Variadic template and perfect forwarding.  Clo
 
 Use C++ and C to control the CPython interpreter.
 
-1. Pybind11 build system
+1. Expectation from Python
+   1. Linear wave
+   2. The inviscid Burgers equation
+2. Pybind11 build system
    1. Setuptools
    2. Cmake with a sub-directory
    3. Cmake with install pybind11
-2. Additional wrapping layer for customization
-3. Wrapping API
+3. Additional wrapping layer for customization
+4. Wrapping API
    1. Functions and property
    2. Named ane keyword arguments
    3. What happens in Python stays in Python (or pybind11)
-4. See how Python plays
-   1. Linear wave
-   2. The inviscid Burgers equation
 5. Manipulate Python objects in C++
 6. Python containers
    1. `tuple`
    2. `list`
    3. `dict`
 7. Use cpython API with pybind11
-8. `PyObject` reference counting
-9. Built-in types
+   1. `PyObject` reference counting
+8. Built-in types
    1. Cached value
    2. Attribute access
    3. Function call
    4. Tuple
    5. Dictionary
    6. List
-10. Useful operations
+9. Useful operations
     1. Import
     2. Exception
-11. Python memory management
+10. Python memory management
     1. PyMem interface
     2. Small memory optimization
     3. Tracemalloc
