@@ -1,0 +1,1 @@
+content = 'string in onemod'
