@@ -1,0 +1,92 @@
+name: notebook_20au
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+        matrix:
+          os: [ubuntu-18.04]
+
+        fail-fast: false
+
+    steps:
+
+    - name: setup
+      run: echo "${HOME}/opt/conda/bin" >> $GITHUB_PATH
+
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: dependency (ubuntu)
+      if: matrix.os != 'macos-latest'
+      run: |
+        sudo apt-get -q update
+        sudo apt-get -qy install \
+            curl build-essential make cmake libc6-dev gcc-7 g++-7 gcc-multilib
+
+    - name: dependency (conda+pip+custom)
+      run: |
+        curl -sSL -o miniconda.sh \
+          https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        bash miniconda.sh -b -p ${HOME}/opt/conda
+        rm -rf miniconda.sh
+
+        export PATH="${HOME}/opt/conda/bin:$PATH"
+        conda config --set channel_priority strict
+        conda update --all --yes
+        conda install --yes pip python numpy scipy pytest pandas matplotlib mkl-include
+
+        pip install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
+        pip install https://github.com/aldanor/ipybind/tarball/master
+
+        export INSTALL_PREFIX=${INSTALL_PREFIX:-${HOME}/opt/conda}
+        contrib/install.sh everything
+
+    - name: run notebook index
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/index.ipynb
+
+    - name: run notebook 01_introduction/introduction
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/01_introduction/introduction.ipynb
+
+    - name: run notebook 02_engineering/engineering
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/02_engineering/engineering.ipynb
+
+    - name: run notebook 03_numpy/numpy
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/03_numpy/numpy.ipynb
+
+    - name: run notebook 04_cpp/cpp
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/04_cpp/cpp.ipynb
+
+    - name: run notebook 05_matrix/matrix
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/05_matrix/matrix.ipynb
+
+    - name: run notebook 06_cache/cache
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/06_cache/cache.ipynb
+
+    - name: run notebook 07_simd/simd
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/07_simd/simd.ipynb
+
+    - name: run notebook 08_mem/mem
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/08_mem/mem.ipynb
+
+    - name: run notebook 09_smart/smart
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/09_smart/smart.ipynb
+
+    - name: run notebook 10_moderncpp/moderncpp
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/10_moderncpp/moderncpp.ipynb
+
+    - name: run notebook 11_cpppy/cpppy
+      if: false # disable before dropping libst dependency
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/11_cpppy/cpppy.ipynb
+
+    - name: run notebook 12_arraydesign/arraydesign
+      if: false # fails with %%pybind11 -c="-O3"
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/12_arraydesign/arraydesign.ipynb
+
+    - name: run notebook 13_advpy/advpy
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/21sp_nctu/13_advpy/advpy.ipynb
