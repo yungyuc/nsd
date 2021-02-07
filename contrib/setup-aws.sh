@@ -16,12 +16,14 @@ if [ -z "$SKIP_APT" ] ; then
   sudo apt-get -qy dist-upgrade
 
   # Install building tools.
-  sudo apt-get -qyy install tmux build-essential make cmake silversearcher-ag \
+  sudo DEBIAN_FRONTEND=noninteractive apt-get -qy install \
+    tmux build-essential make cmake silversearcher-ag \
     libc6-dev gcc-7 g++-7 gcc-multilib \
     gcc g++ gcc-10 g++-10 clang clang-tidy clang-10 clang-tidy-10 \
     gfortran gfortran-10 intel-mkl-full \
     python3 python3-pip python3-pytest \
-    python3-numpy python3-scipy python3-pandas python3-matplotlib
+    python3-numpy python3-scipy python3-pandas python3-matplotlib \
+    jupyter
 
   # Remove all trace of apt.
   sudo rm -rf /var/lib/apt/lists/*
@@ -29,12 +31,12 @@ fi
 
 if [ -z "$SKIP_HOME" ] ; then
   # Set up home directory.
-  rm -rf workspace
-  git clone git@github.com:yungyuc/workspace.git workspace
-  rm -rf .git
-  mv workspace/.git .
-  rm -rf workspace
-  git checkout -- .
+  rm -rf $HOME/workspace
+  git clone git@github.com:yungyuc/workspace.git $HOME/workspace
+  rm -rf $HOME/.git
+  mv $HOME/workspace/.git $HOME
+  rm -rf $HOME/workspace
+  (cd $HOME ; git checkout -- .)
 
   # Set up sub-directories in home.
   mkdir -p ${HOME}/tmp
@@ -44,7 +46,7 @@ if [ -z "$SKIP_HOME" ] ; then
 
   # Add NSD clone helper.
   cat << EOF > ${HOME}/work/clone-nsd.sh
-git clone git@github.com:yungyuc/nsd.git \${HOME}/work/nsd
+git clone git@github.com:yungyuc/nsd \${HOME}/work/nsd
 EOF
   chmod a+x work/clone-nsd.sh
 fi

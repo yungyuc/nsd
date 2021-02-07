@@ -304,3 +304,9 @@ Advanced topics in Python programming.
 # Miscellaneous
 
 * NCTU course link: https://timetable.nctu.edu.tw/?r=main/crsoutline&Acy=109&Sem=2&CrsNo=5301
+
+Command to bootstrap a server on AWS:
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/yungyuc/nsd/master/contrib/setup-aws.sh)
+```
