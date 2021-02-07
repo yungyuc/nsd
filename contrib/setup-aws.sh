@@ -17,7 +17,7 @@ if [ -z "$SKIP_APT" ] ; then
 
   # Install building tools.
   sudo DEBIAN_FRONTEND=noninteractive apt-get -qy install \
-    tmux build-essential make cmake silversearcher-ag \
+    tmux build-essential make cmake silversearcher-ag radare2 \
     libc6-dev gcc-7 g++-7 gcc-multilib \
     gcc g++ gcc-10 g++-10 clang clang-tidy clang-10 clang-tidy-10 \
     gfortran gfortran-10 intel-mkl-full \
@@ -32,7 +32,7 @@ fi
 if [ -z "$SKIP_HOME" ] ; then
   # Set up home directory.
   rm -rf $HOME/workspace
-  git clone git@github.com:yungyuc/workspace.git $HOME/workspace
+  git clone https://github.com/yungyuc/workspace $HOME/workspace
   rm -rf $HOME/.git
   mv $HOME/workspace/.git $HOME
   rm -rf $HOME/workspace
