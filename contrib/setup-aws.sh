@@ -45,27 +45,6 @@ EOF
   chmod a+x work/clone-nsd.sh
 fi
 
-if [ -z "$SKIP_CONDA" ] ; then
-  # Install miniconda
-  curl -sSL -o miniconda.sh \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-  bash miniconda.sh -b -p ${HOME}/opt/conda
-  rm -rf miniconda.sh
-
-  cat << EOF > ${HOME}/.bash_acct
-namemunge PATH ${HOME}/opt/conda/bin
-EOF
-
-  export PATH="${HOME}/opt/conda/bin:$PATH"
-
-  conda config --set channel_priority strict
-  conda update --all --yes
-  conda install --yes pip python numpy scipy pytest pandas matplotlib mkl-include
-
-  pip install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
-  pip install https://github.com/aldanor/ipybind/tarball/master
-fi
-
 INSTALL_PREFIX=${INSTALL_PREFIX:-${HOME}/opt/conda}
 INSTALL_VERSION=${INSTALL_VERSION:-master}
 
