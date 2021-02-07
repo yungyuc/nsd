@@ -16,8 +16,12 @@ if [ -z "$SKIP_APT" ] ; then
   sudo apt-get -qy dist-upgrade
 
   # Install building tools.
-  sudo apt-get -qy install tmux build-essential make cmake silversearcher-ag \
-    libc6-dev gcc-7 g++-7 gcc-multilib python
+  sudo apt-get -qyy install tmux build-essential make cmake silversearcher-ag \
+    libc6-dev gcc-7 g++-7 gcc-multilib \
+    gcc g++ gcc-10 g++-10 clang clang-tidy clang-10 clang-tidy-10 \
+    gfortran gfortran-10 intel-mkl-full \
+    python3 python3-pip python3-pytest \
+    python3-numpy python3-scipy python3-pandas python3-matplotlib
 
   # Remove all trace of apt.
   sudo rm -rf /var/lib/apt/lists/*
@@ -43,6 +47,11 @@ if [ -z "$SKIP_HOME" ] ; then
 git clone git@github.com:yungyuc/nsd.git \${HOME}/work/nsd
 EOF
   chmod a+x work/clone-nsd.sh
+fi
+
+if [ -z "$SKIP_PIP" ] ; then
+  sudo pip3 install nbgitpuller sphinx-gallery cxxfilt
+  sudo pip3 install https://github.com/aldanor/ipybind/tarball/master
 fi
 
 INSTALL_PREFIX=${INSTALL_PREFIX:-${HOME}/opt/conda}
@@ -82,8 +91,8 @@ pybind11() {
   cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
   cmakeargs+=("-DPYTHON_EXECUTABLE:FILEPATH=`which python3`")
   cmakeargs+=("-DPYBIND11_TEST=OFF")
-  install ${PYBIND_ORG:-pybind} pybind11 ${PYBIND_BRANCH:-v2.4.3} \
-    ${PYBIND_LOCAL:-pybind11-2.4.3} "${cmakeargs[@]}"
+  install ${PYBIND_ORG:-pybind} pybind11 ${PYBIND_BRANCH:-v2.6.2} \
+    ${PYBIND_LOCAL:-pybind11-2.6.2} "${cmakeargs[@]}"
 
 }
 
