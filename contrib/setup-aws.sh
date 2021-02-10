@@ -16,8 +16,14 @@ if [ -z "$SKIP_APT" ] ; then
   sudo apt-get -qy dist-upgrade
 
   # Install building tools.
-  sudo apt-get -qy install tmux build-essential make cmake silversearcher-ag \
-    libc6-dev gcc-7 g++-7 gcc-multilib python
+  sudo DEBIAN_FRONTEND=noninteractive apt-get -qy install \
+    tmux build-essential make cmake silversearcher-ag radare2 \
+    libc6-dev gcc-7 g++-7 gcc-multilib \
+    gcc g++ gcc-10 g++-10 clang clang-tidy clang-10 clang-tidy-10 \
+    gfortran gfortran-10 intel-mkl-full \
+    python3 python3-pip python3-pytest \
+    python3-numpy python3-scipy python3-pandas python3-matplotlib \
+    jupyter
 
   # Remove all trace of apt.
   sudo rm -rf /var/lib/apt/lists/*
@@ -25,12 +31,12 @@ fi
 
 if [ -z "$SKIP_HOME" ] ; then
   # Set up home directory.
-  rm -rf workspace
-  git clone git@github.com:yungyuc/workspace.git workspace
-  rm -rf .git
-  mv workspace/.git .
-  rm -rf workspace
-  git checkout -- .
+  rm -rf $HOME/workspace
+  git clone https://github.com/yungyuc/workspace $HOME/workspace
+  rm -rf $HOME/.git
+  mv $HOME/workspace/.git $HOME
+  rm -rf $HOME/workspace
+  (cd $HOME ; git checkout -- .)
 
   # Set up sub-directories in home.
   mkdir -p ${HOME}/tmp
@@ -40,30 +46,14 @@ if [ -z "$SKIP_HOME" ] ; then
 
   # Add NSD clone helper.
   cat << EOF > ${HOME}/work/clone-nsd.sh
-git clone git@github.com:yungyuc/nsd.git \${HOME}/work/nsd
+git clone git@github.com:yungyuc/nsd \${HOME}/work/nsd
 EOF
   chmod a+x work/clone-nsd.sh
 fi
 
-if [ -z "$SKIP_CONDA" ] ; then
-  # Install miniconda
-  curl -sSL -o miniconda.sh \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-  bash miniconda.sh -b -p ${HOME}/opt/conda
-  rm -rf miniconda.sh
-
-  cat << EOF > ${HOME}/.bash_acct
-namemunge PATH ${HOME}/opt/conda/bin
-EOF
-
-  export PATH="${HOME}/opt/conda/bin:$PATH"
-
-  conda config --set channel_priority strict
-  conda update --all --yes
-  conda install --yes pip python numpy scipy pytest pandas matplotlib mkl-include
-
-  pip install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
-  pip install https://github.com/aldanor/ipybind/tarball/master
+if [ -z "$SKIP_PIP" ] ; then
+  sudo pip3 install nbgitpuller sphinx-gallery cxxfilt
+  sudo pip3 install https://github.com/aldanor/ipybind/tarball/master
 fi
 
 INSTALL_PREFIX=${INSTALL_PREFIX:-${HOME}/opt/conda}
@@ -103,8 +93,8 @@ pybind11() {
   cmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
   cmakeargs+=("-DPYTHON_EXECUTABLE:FILEPATH=`which python3`")
   cmakeargs+=("-DPYBIND11_TEST=OFF")
-  install ${PYBIND_ORG:-pybind} pybind11 ${PYBIND_BRANCH:-v2.4.3} \
-    ${PYBIND_LOCAL:-pybind11-2.4.3} "${cmakeargs[@]}"
+  install ${PYBIND_ORG:-pybind} pybind11 ${PYBIND_BRANCH:-v2.6.2} \
+    ${PYBIND_LOCAL:-pybind11-2.6.2} "${cmakeargs[@]}"
 
 }
 
