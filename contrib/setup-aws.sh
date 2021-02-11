@@ -3,6 +3,9 @@
 # Copyright (C) 2020-2021 Yung-Yu Chen <yyc@solvcon.net>.
 #
 
+# One-liner for provision a new AWS instance:
+# su ubuntu -c 'env REBOOT=1 bash <(curl -s https://raw.githubusercontent.com/yungyuc/nsd/master/contrib/setup-aws.sh)'
+
 if [ $(uname) != Linux ]; then
   echo "$0 must run on Linux, exiting"
   exit 1
