@@ -66,6 +66,16 @@ fi
 
 INSTALL_PREFIX=${INSTALL_PREFIX:-/usr}
 
+if [ "$(uname)" == "Darwin" ] ; then
+  NP=${NP:=$(sysctl -n hw.ncpu)}
+elif [ "$(uname)" == "Linux" ] ; then
+  NP=${NP:=$(cat /proc/cpuinfo | grep processor | wc -l)}
+else
+  NP=${NP:=1}
+fi
+
+NP=$(($NP*2))
+
 radare2() {
 
   githuborg=radareorg
@@ -85,10 +95,10 @@ radare2() {
   tar xf $pkgfull.tar.gz
   cd $pkgfull
   ./configure --prefix=${INSTALL_PREFIX}
-  make -j
-  sudo make install -j
+  make -j $NP
+  sudo make install -j $NP
   popd
-  rm -rf $workdir
+  sudo rm -rf $workdir
 
 }
 
@@ -114,9 +124,9 @@ install() {
   mkdir -p build
   cd build
   cmake $cmakeargs ..
-  sudo make install -j
+  sudo make install -j $NP
   popd
-  rm -rf $workdir
+  sudo rm -rf $workdir
 
 }
 

@@ -9,77 +9,124 @@ jobs:
 
     strategy:
         matrix:
-          os: [ubuntu-20.04]
+          os: [ubuntu-20.04, macos-10.15]
 
         fail-fast: false
 
     steps:
 
-    - name: setup
-      run: echo "${HOME}/opt/conda/bin" >> $GITHUB_PATH
-
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
 
-    - name: dependency (ubuntu)
-      if: matrix.os != 'macos-latest'
+    - name: apt (ubuntu)
+      if: startsWith(matrix.os, 'ubuntu')
       run: |
         sudo apt-get -q update
         sudo apt-get -qy install \
-            curl build-essential make cmake libc6-dev gcc-7 g++-7 gcc-multilib \
-            gcc g++ gcc-10 g++-10 clang clang-tidy clang-10 clang-tidy-10 \
-            gfortran gfortran-10 intel-mkl-full \
+            curl build-essential make cmake libc6-dev \
+            gcc g++ clang clang-tidy \
+            gfortran intel-mkl-full \
             python3 python3-pip python3-pytest \
             python3-numpy python3-scipy python3-pandas python3-matplotlib \
             jupyter
 
-    - name: dependency (pip+custom)
+    - name: brew (macos)
+      if: startsWith(matrix.os, 'macos')
       run: |
-        sudo pip3 install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
-        sudo pip3 install https://github.com/aldanor/ipybind/tarball/master
-        contrib/install.sh everything
+        brew install make cmake llvm python3 radare2
+
+    - name: pip (ubuntu)
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        sudo pip3 install -U flake8 nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
+        sudo pip3 install -U https://github.com/aldanor/ipybind/tarball/master
+
+    - name: pip (macos)
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        pip3 install -U pip
+        pip3 install -U setuptools
+        pip3 install -U pytest numpy scipy pandas matplotlib jupyter
+        pip3 install -U flake8 nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
+        pip3 install -U https://github.com/aldanor/ipybind/tarball/master
+
+    - name: INSTALL_PREFIX (ubuntu)
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        echo "INSTALL_PREFIX=/usr" >> ${GITHUB_ENV}
+
+    - name: INSTALL_PREFIX (macos)
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        echo "INSTALL_PREFIX=/usr/local" >> ${GITHUB_ENV}
+
+    - name: custom
+      run: |
+        INSTALL_PREFIX=${{ env.INSTALL_PREFIX }}
+        echo "INSTALL_PREFIX=${INSTALL_PREFIX}"
+        #contrib/install.sh radare2 # skip to save time, for now
+        contrib/install.sh pybind11
+        contrib/install.sh xtl
+        contrib/install.sh xsimd
+        contrib/install.sh xtensor
+        contrib/install.sh xtensor_blas
+        contrib/install.sh xtensor_python
+
+    - name: show dependency
+      run: |
+        echo "radare2 path: $(which radare2)"
+        echo "radare2 version: $(radare2 -v)"
+        echo "gcc path: $(which gcc)"
+        echo "gcc version: $(gcc --version)"
+        echo "cmake path: $(which cmake)"
+        echo "cmake version: $(cmake --version)"
+        echo "python3 path: $(which python3)"
+        echo "python3 version: $(python3 --version)"
+        python3 -c 'import numpy ; print("numpy.__version__:", numpy.__version__)'
+        echo "pytest path: $(which pytest)"
+        echo "pytest version: $(pytest --version)"
+        echo "clang-tidy path: $(which clang-tidy)"
+        echo "clang-tidy version: $(clang-tidy -version)"
+        echo "flake8 path: $(which flake8)"
+        echo "flake8 version: $(flake8 --version)"
 
     - name: run notebook index
       run: jupyter nbconvert --to notebook --inplace --execute notebook/current/index.ipynb
 
-    - name: run notebook 01_introduction/introduction
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/01_introduction/introduction.ipynb
+    - name: 04_cpp
+      run: |
+        make -C notebook/current/04_cpp
 
-    - name: run notebook 02_engineering/engineering
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/02_engineering/engineering.ipynb
+    - name: 05_matrix
+      # macos does not have MKL.
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        make -C notebook/current/05_matrix
 
-    - name: run notebook 03_numpy/numpy
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/03_numpy/numpy.ipynb
+    - name: 06_cache
+      # macos does not have MKL.
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        make -C notebook/current/06_cache
 
-    - name: run notebook 04_cpp/cpp
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/04_cpp/cpp.ipynb
+    - name: 07_simd
+      # macos does not have MKL.
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        make -C notebook/current/07_simd
 
-    - name: run notebook 05_matrix/matrix
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/05_matrix/matrix.ipynb
+    - name: 08_mem
+      run: |
+        make -C notebook/current/08_mem
 
-    - name: run notebook 06_cache/cache
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/06_cache/cache.ipynb
+    - name: 09_smart
+      run: |
+        make -C notebook/current/09_smart/01_pointer
+        make -C notebook/current/09_smart/02_shared
 
-    - name: run notebook 07_simd/simd
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/07_simd/simd.ipynb
-
-    - name: run notebook 08_mem/mem
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/08_mem/mem.ipynb
-
-    - name: run notebook 09_smart/smart
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/09_smart/smart.ipynb
-
-    - name: run notebook 10_moderncpp/moderncpp
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/10_moderncpp/moderncpp.ipynb
-
-    - name: run notebook 11_cpppy/cpppy
-      if: false # disable before dropping libst dependency
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/11_cpppy/cpppy.ipynb
-
-    - name: run notebook 12_arraydesign/arraydesign
-      if: false # fails with %%pybind11 -c="-O3"
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/12_arraydesign/arraydesign.ipynb
-
-    - name: run notebook 13_advpy/advpy
-      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/13_advpy/advpy.ipynb
+    - name: 10_moderncpp
+      run: |
+        make -C notebook/current/10_moderncpp/03_elision
+        make -C notebook/current/10_moderncpp/04_template
+        make -C notebook/current/10_moderncpp/05_lambda
