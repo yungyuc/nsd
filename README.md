@@ -4,10 +4,7 @@ Copyright 2021, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 
 ![Build Status](https://github.com/yungyuc/nsd/workflows/primary/badge.svg)
 
-* 2021 sprint at NCTU: [notebook/21sp_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/index.ipynb).
-* 2020 autumn at NCTU: [notebook/20au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/index.ipynb).
-* 2020 spring at NCTU: [notebook/20sp_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20sp_nctu/index.ipynb).
-* 2019 autumn at NCTU: [notebook/19au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/19au_nctu/index.ipynb).
+[notebook](https://github.com/yungyuc/nsd/blob/master/notebook/current/index.ipynb).
 
 **Objectives**: This course discusses the art to build numerical software, i.e., computer programs applying numerical methods for solving mathematical or physical problems.  We will be using the combination of Python and C++ and related tools (e.g., [bash](https://www.gnu.org/software/bash/), [git](https://git-scm.com), [make](https://www.gnu.org/software/make/), etc.) to learn the modern development processes.  By completing this course, students will acquire the fundamental skills for developing modern numerical software.
 
@@ -55,7 +52,7 @@ Copyright 2021, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 * W17 (6/14) No meeting
 * W18 (6/21) No meeting
 
-# Unit 1 [Introduction](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/01_introduction/introduction.ipynb)
+# Unit 1 [Introduction](https://github.com/yungyuc/nsd/blob/master/notebook/current/01_introduction/introduction.ipynb)
 
 1. Part 1: What is numerical software
    1. Why develop numerical software
@@ -70,7 +67,7 @@ Copyright 2021, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
    1. Runtime environment: Linux and AWS
    2. Jupyter notebook
 
-# Unit 2 [Fundamental engineering practices](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/02_engineering/engineering.ipynb)
+# Unit 2 [Fundamental engineering practices](https://github.com/yungyuc/nsd/blob/master/notebook/current/02_engineering/engineering.ipynb)
 
 A large chunk of efforts is spent in the infrastructure for coding.  The key to the engineering system is automation.
 
@@ -90,7 +87,7 @@ A large chunk of efforts is spent in the infrastructure for coding.  The key to 
       2. System time and user time
       3. Python timing tools
 
-# Unit 3 [Python and numpy](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/03_numpy/numpy.ipynb)
+# Unit 3 [Python and numpy](https://github.com/yungyuc/nsd/blob/master/notebook/current/03_numpy/numpy.ipynb)
 
 Python is a popular choice for the scripting engine that makes the numerical software work as a platform.
 
@@ -111,7 +108,7 @@ The platform works like a library providing data structures and helpers to solve
    2. Linear algebra using numpy and scipy
    3. Package management wtih conda and pip
 
-# Unit 4 [C++ and computer architecture](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/04_cpp/cpp.ipynb)
+# Unit 4 [C++ and computer architecture](https://github.com/yungyuc/nsd/blob/master/notebook/current/04_cpp/cpp.ipynb)
 
 The low-level code of numerical software must be high-performance.  The industries chose C++ because it can take advantage of everything that a hardware architecture offers while using any level of abstraction.
 
@@ -133,7 +130,7 @@ The low-level code of numerical software must be high-performance.  The industri
    2. std::array, std::list
    3. std::map, std::set, std::unordered_map, std::unordered_set
 
-# Unit 5 [Matrix operations](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/05_matrix/matrix.ipynb)
+# Unit 5 [Matrix operations](https://github.com/yungyuc/nsd/blob/master/notebook/current/05_matrix/matrix.ipynb)
 
 Matrices are everywhere in numerical analysis.  Arrays are the fundamental data structure and used for matrix-vector, matrix-matrix, and other linear algebraic operations.
 
@@ -150,7 +147,7 @@ Matrices are everywhere in numerical analysis.  Arrays are the fundamental data 
    1. Eigenvalue and singular value problems
    1. Least square problems
 
-# Unit 6 [Cache optimization](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/06_cache/cache.ipynb)
+# Unit 6 [Cache optimization](https://github.com/yungyuc/nsd/blob/master/notebook/current/06_cache/cache.ipynb)
 
 How cache works, its importance to performance, and optimization with cache.
 
@@ -162,7 +159,7 @@ How cache works, its importance to performance, and optimization with cache.
    4. Array majoring in numpy
 3. Tiling
 
-# Unit 7 [SIMD](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/07_simd/simd.ipynb)
+# Unit 7 [SIMD](https://github.com/yungyuc/nsd/blob/master/notebook/current/07_simd/simd.ipynb)
 
 Parallelism and x86 assembly for SIMD.
 
@@ -176,7 +173,7 @@ Parallelism and x86 assembly for SIMD.
    3. Symbol table
    4. Inspect assembly: 1, 3, 5 multiplications
 
-# Unit 8 [Memory management](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/08_mem/mem.ipynb)
+# Unit 8 [Memory management](https://github.com/yungyuc/nsd/blob/master/notebook/current/08_mem/mem.ipynb)
 
 Numerical software tends to use as much memory as a workstation has.  The memory has two major uses: (i) to hold the required huge amount of data, and (ii) to gain speed.
 
@@ -186,7 +183,7 @@ Numerical software tends to use as much memory as a workstation has.  The memory
 4. STL allocator API
 3. Object counter
 
-# Unit 9 [Ownership and smart pointers](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/09_smart/smart.ipynb)
+# Unit 9 [Ownership and smart pointers](https://github.com/yungyuc/nsd/blob/master/notebook/current/09_smart/smart.ipynb)
 
 Ownership and memory management using C++ smart pointers.
 
@@ -202,7 +199,7 @@ Ownership and memory management using C++ smart pointers.
     2. Get `shared_ptr` from `this`
     3. Cyclic reference and `weak_ptr`
 
-# Unit 10 [Modern C++](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/10_moderncpp/moderncpp.ipynb)
+# Unit 10 [Modern C++](https://github.com/yungyuc/nsd/blob/master/notebook/current/10_moderncpp/moderncpp.ipynb)
 
 Copy elision and move semantics.  Variadic template and perfect forwarding.  Closure.
 
@@ -224,7 +221,7 @@ Copy elision and move semantics.  Variadic template and perfect forwarding.  Clo
 7. Closure
     1. Comments on functional style
 
-# Unit 11 [C++ and C for Python](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/11_cpppy/cpppy.ipynb)
+# Unit 11 [C++ and C for Python](https://github.com/yungyuc/nsd/blob/master/notebook/current/11_cpppy/cpppy.ipynb)
 
 Use C++ and C to control the CPython interpreter.
 
@@ -262,7 +259,7 @@ Use C++ and C to control the CPython interpreter.
     2. Small memory optimization
     3. Tracemalloc
 
-# Unit 12 [Array code in C++](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/12_arraycode/arraycode.ipynb)
+# Unit 12 [Array code in C++](https://github.com/yungyuc/nsd/blob/master/notebook/current/12_arraycode/arraycode.ipynb)
 
 Dissect the array-based code and element-based code and when to use them.  Software architecture that take advantage of array-based code.
 
@@ -274,7 +271,7 @@ Dissect the array-based code and element-based code and when to use them.  Softw
 6. Conversion between dynamic and static semantics
 7. Insert profiling code
 
-# Unit 12 [Array-oriented design](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/12_arraydesign/arraydesign.ipynb)
+# Unit 12 [Array-oriented design](https://github.com/yungyuc/nsd/blob/master/notebook/current/12_arraydesign/arraydesign.ipynb)
 
 Software architecture that take advantage of array-based code.
 
@@ -282,7 +279,7 @@ Software architecture that take advantage of array-based code.
 2. Conversion between dynamic and static semantics
 3. Insert profiling code
 
-# Unit 13 [Advanced Python](https://github.com/yungyuc/nsd/blob/master/notebook/21sp_nctu/13_advpy/advpy.ipynb)
+# Unit 13 [Advanced Python](https://github.com/yungyuc/nsd/blob/master/notebook/current/13_advpy/advpy.ipynb)
 
 Advanced topics in Python programming.
 
@@ -303,7 +300,10 @@ Advanced topics in Python programming.
 
 # Miscellaneous
 
-* NCTU course link: https://timetable.nctu.edu.tw/?r=main/crsoutline&Acy=109&Sem=2&CrsNo=5301
+* NYCU course link: https://timetable.nycu.edu.tw/?r=main/crsoutline&Acy=109&Sem=2&CrsNo=5301
+* 2020 autumn at NCTU: [notebook/20au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/index.ipynb).
+* 2020 spring at NCTU: [notebook/20sp_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20sp_nctu/index.ipynb).
+* 2019 autumn at NCTU: [notebook/19au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/19au_nctu/index.ipynb).
 
 Command to bootstrap a server on AWS:
 
