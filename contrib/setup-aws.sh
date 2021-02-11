@@ -1,11 +1,16 @@
 #!/bin/bash
 #
-# Copyright (C) 2020 Yung-Yu Chen <yyc@solvcon.net>.
+# Copyright (C) 2020-2021 Yung-Yu Chen <yyc@solvcon.net>.
 #
 
-export DEBIAN_FRONTEND=noninteractive
+if [ $(uname) != Linux ]; then
+  echo "$0 must run on Linux, exiting"
+  exit 1
+fi
 
 if [ -z "$SKIP_APT" ] ; then
+  export DEBIAN_FRONTEND=noninteractive
+
   # Set up timezone.
   sudo apt-get -q update
   sudo apt-get -qy install tzdata
@@ -17,7 +22,7 @@ if [ -z "$SKIP_APT" ] ; then
 
   # Install building tools.
   sudo DEBIAN_FRONTEND=noninteractive apt-get -qy install \
-    tmux build-essential make cmake silversearcher-ag radare2 \
+    tmux build-essential make cmake silversearcher-ag \
     libc6-dev gcc-7 g++-7 gcc-multilib \
     gcc g++ gcc-10 g++-10 clang clang-tidy clang-10 clang-tidy-10 \
     gfortran gfortran-10 intel-mkl-full \
@@ -52,12 +57,37 @@ EOF
 fi
 
 if [ -z "$SKIP_PIP" ] ; then
-  sudo pip3 install nbgitpuller sphinx-gallery cxxfilt
+  sudo pip3 install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
   sudo pip3 install https://github.com/aldanor/ipybind/tarball/master
 fi
 
-INSTALL_PREFIX=${INSTALL_PREFIX:-${HOME}/opt/conda}
-INSTALL_VERSION=${INSTALL_VERSION:-master}
+INSTALL_PREFIX=${INSTALL_PREFIX:-/usr}
+
+radare2() {
+
+  githuborg=radareorg
+  pkgname=radare2
+  pkgbranch=master
+  pkgfull=radare2-master
+  pkgrepo=https://github.com/$githuborg/$pkgname.git
+  repotar=https://github.com/$githuborg/$pkgname/archive/$pkgbranch.tar.gz
+
+  workdir=$(mktemp -d /tmp/build.XXXXXXXXX)
+  echo "Work directory: $workdir"
+  mkdir -p $workdir
+  pushd $workdir
+  echo "remote tarball: $repotar"
+  curl -sSL -o $pkgfull.tar.gz $repotar
+  rm -rf $pkgfull
+  tar xf $pkgfull.tar.gz
+  cd $pkgfull
+  ./configure --prefix=${INSTALL_PREFIX}
+  make -j
+  sudo make install -j
+  popd
+  rm -rf $workdir
+
+}
 
 install() {
 
@@ -81,7 +111,7 @@ install() {
   mkdir -p build
   cd build
   cmake $cmakeargs ..
-  make install
+  sudo make install -j
   popd
   rm -rf $workdir
 
@@ -147,10 +177,16 @@ xtensor_python() {
 }
 
 if [ -z "$SKIP_INSTALL" ] ; then
+  radare2
   pybind11
   xtl
   xsimd
   xtensor
   xtensor_blas
   xtensor_python
+fi
+
+if [[ "1" == "$REBOOT" ]] ; then
+  echo "rebooting ..."
+  sudo reboot
 fi

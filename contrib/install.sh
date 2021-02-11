@@ -1,11 +1,36 @@
 #!/bin/bash
 #
-# Copyright (C) 2018 Yung-Yu Chen <yyc@solvcon.net>.
+# Copyright (C) 2018-2021 Yung-Yu Chen <yyc@solvcon.net>.
 #
-# Build and install xtensor-python.
+# Build and install nsd custom dependencies.
 
 INSTALL_PREFIX=${INSTALL_PREFIX:-/usr}
-INSTALL_VERSION=${INSTALL_VERSION:-master}
+
+radare2() {
+
+  githuborg=radareorg
+  pkgname=radare2
+  pkgbranch=master
+  pkgfull=radare2-master
+  pkgrepo=https://github.com/$githuborg/$pkgname.git
+  repotar=https://github.com/$githuborg/$pkgname/archive/$pkgbranch.tar.gz
+
+  workdir=$(mktemp -d /tmp/build.XXXXXXXXX)
+  echo "Work directory: $workdir"
+  mkdir -p $workdir
+  pushd $workdir
+  echo "remote tarball: $repotar"
+  curl -sSL -o $pkgfull.tar.gz $repotar
+  rm -rf $pkgfull
+  tar xf $pkgfull.tar.gz
+  cd $pkgfull
+  ./configure --prefix=${INSTALL_PREFIX}
+  make -j
+  sudo make install -j
+  popd
+  rm -rf $workdir
+
+}
 
 install() {
 
@@ -29,7 +54,7 @@ install() {
   mkdir -p build
   cd build
   cmake $cmakeargs ..
-  make install
+  sudo make install -j
   popd
   rm -rf $workdir
 
@@ -94,7 +119,9 @@ xtensor_python() {
 
 }
 
-if [ $1 == "pybind11" ]; then
+if [ $1 == "radare2" ]; then
+  radare2
+elif [ $1 == "pybind11" ]; then
   pybind11
 elif [ $1 == "xtl" ]; then
   xtl
@@ -107,6 +134,7 @@ elif [ $1 == "xtensor-blas" ]; then
 elif [ $1 == "xtensor-python" ]; then
   xtensor_python
 elif [ $1 == "everything" ]; then
+  radare2
   pybind11
   xtl
   xsimd

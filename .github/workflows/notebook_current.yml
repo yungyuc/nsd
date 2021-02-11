@@ -27,24 +27,17 @@ jobs:
       run: |
         sudo apt-get -q update
         sudo apt-get -qy install \
-            curl build-essential make cmake libc6-dev gcc-7 g++-7 gcc-multilib
+            curl build-essential make cmake libc6-dev gcc-7 g++-7 gcc-multilib \
+            gcc g++ gcc-10 g++-10 clang clang-tidy clang-10 clang-tidy-10 \
+            gfortran gfortran-10 intel-mkl-full \
+            python3 python3-pip python3-pytest \
+            python3-numpy python3-scipy python3-pandas python3-matplotlib \
+            jupyter
 
-    - name: dependency (conda+pip+custom)
+    - name: dependency (pip+custom)
       run: |
-        curl -sSL -o miniconda.sh \
-          https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-        bash miniconda.sh -b -p ${HOME}/opt/conda
-        rm -rf miniconda.sh
-
-        export PATH="${HOME}/opt/conda/bin:$PATH"
-        conda config --set channel_priority strict
-        conda update --all --yes
-        conda install --yes pip python numpy scipy pytest pandas matplotlib mkl-include
-
-        pip install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
-        pip install https://github.com/aldanor/ipybind/tarball/master
-
-        export INSTALL_PREFIX=${INSTALL_PREFIX:-${HOME}/opt/conda}
+        sudo pip3 install nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
+        sudo pip3 install https://github.com/aldanor/ipybind/tarball/master
         contrib/install.sh everything
 
     - name: run notebook index
