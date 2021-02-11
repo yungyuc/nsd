@@ -306,5 +306,5 @@ Advanced topics in Python programming.
 Command to bootstrap a server on AWS:
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/yungyuc/nsd/master/contrib/setup-aws.sh)
+curl -s https://raw.githubusercontent.com/yungyuc/nsd/master/contrib/install.sh | bash -s setup_aws
 ```
