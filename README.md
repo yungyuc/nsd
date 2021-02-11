@@ -4,7 +4,7 @@ Copyright 2021, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 
 ![Build Status](https://github.com/yungyuc/nsd/workflows/primary/badge.svg)
 
-[notebook](https://github.com/yungyuc/nsd/blob/master/notebook/current/index.ipynb).
+[The notebook link](https://github.com/yungyuc/nsd/blob/master/notebook/current/index.ipynb).
 
 **Objectives**: This course discusses the art to build numerical software, i.e., computer programs applying numerical methods for solving mathematical or physical problems.  We will be using the combination of Python and C++ and related tools (e.g., [bash](https://www.gnu.org/software/bash/), [git](https://git-scm.com), [make](https://www.gnu.org/software/make/), etc.) to learn the modern development processes.  By completing this course, students will acquire the fundamental skills for developing modern numerical software.
 
@@ -300,7 +300,7 @@ Advanced topics in Python programming.
 
 # Miscellaneous
 
-* NYCU course link: https://timetable.nycu.edu.tw/?r=main/crsoutline&Acy=109&Sem=2&CrsNo=5301
+* NYCU syllabus link: https://timetable.nycu.edu.tw/?r=main/crsoutline&Acy=109&Sem=2&CrsNo=5301
 * 2020 autumn at NCTU: [notebook/20au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/index.ipynb).
 * 2020 spring at NCTU: [notebook/20sp_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20sp_nctu/index.ipynb).
 * 2019 autumn at NCTU: [notebook/19au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/19au_nctu/index.ipynb).
