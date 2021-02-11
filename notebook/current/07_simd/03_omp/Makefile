@@ -5,6 +5,7 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
 # https://iscinumpy.gitlab.io/post/omp-on-high-sierra/
 CXXFLAGS := -Xpreprocessor -fopenmp
+LINKFLAGS := -lomp
 CXX = clang++
 endif
 
@@ -17,8 +18,6 @@ endif
 CXXFLAGS := ${CXXFLAGS} \
 	-std=c++17 -g -O3 \
 	${FLAGS}
-
-LINKFLAGS := ${LINKFLAGS} -lomp
 
 BINS := omp
 

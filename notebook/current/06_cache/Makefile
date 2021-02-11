@@ -4,8 +4,8 @@ UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
 MKLROOT ?= /opt/intel/mkl
-MKLINC ?= $MKLROOT/include
-MKLLIB ?= $MKLROOT/lib
+MKLINC ?= ${MKLROOT}/include
+MKLLIB ?= ${MKLROOT}/lib
 MKLEXT ?= a
 CXXFLAGS :=
 endif
