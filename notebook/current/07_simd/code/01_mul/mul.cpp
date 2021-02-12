@@ -23,7 +23,7 @@ constexpr const size_t width = 8; // count of floating-point
 constexpr const size_t repeat = 1024 * 1024;
 constexpr const size_t nelem = width * repeat;
 
-constexpr const size_t necount = 100;
+constexpr const size_t necount = 20;
 constexpr const float error_tolerance = 2.e-7;
 
 void multiply1_loop(float* a, float* b, float* r)

@@ -34,7 +34,7 @@ jobs:
     - name: brew (macos)
       if: startsWith(matrix.os, 'macos')
       run: |
-        brew install make cmake llvm python3 radare2
+        brew install make cmake llvm libomp python3 radare2
 
     - name: pip (ubuntu)
       if: startsWith(matrix.os, 'ubuntu')
@@ -110,11 +110,27 @@ jobs:
       run: |
         make -C notebook/current/06_cache
 
-    - name: 07_simd
-      # macos does not have MKL.
-      if: startsWith(matrix.os, 'ubuntu')
+    - name: 07_simd_mul
       run: |
-        make -C notebook/current/07_simd
+        MYROOT=notebook/current/07_simd/code
+        make -C ${MYROOT} hardware
+        make -C ${MYROOT} clean
+        make -C ${MYROOT}/01_mul run
+        #make -C ${MYROOT}/02_fma run # server not supporting FMA
+
+    - name: 07_simd_mul_r2
+      # ubuntu does not have a working r2.
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        MYROOT=notebook/current/07_simd/code
+        make -C ${MYROOT}/01_mul r2all
+
+    - name: 07_simd_omp
+      run: |
+        MYROOT=notebook/current/07_simd/code
+        make -C ${MYROOT}/03_omp
+        make -C ${MYROOT}/03_omp run
+        [ "$(env OMP_NUM_THREADS=5 make -C ${MYROOT}/03_omp run | grep 'Hello from thread' | wc -l | xargs)" = "5" ]
 
     - name: 08_mem
       run: |

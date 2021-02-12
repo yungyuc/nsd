@@ -1,6 +1,6 @@
-FLAGS ?=
+include ../common.mk
 
-UNAME_S := $(shell uname -s)
+BIN := omp
 
 ifeq ($(UNAME_S),Darwin)
 # https://iscinumpy.gitlab.io/post/omp-on-high-sierra/
@@ -19,20 +19,19 @@ CXXFLAGS := ${CXXFLAGS} \
 	-std=c++17 -g -O3 \
 	${FLAGS}
 
-BINS := omp
-
 .PHONY: default
-default: ${BINS}
+default: ${BIN}
 
-omp.o: omp.cpp
+omp.o: omp.cpp Makefile
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 omp: omp.o
 	${CXX} ${CXXFLAGS} ${LINKFLAGS} -o $@ $^
 
-%: %.cpp Makefile
-	${CXX} ${CXXFLAGS} -o $@ $<
+.PHONY: run
+run: ${BIN}
+	./${BIN}
 
 .PHONY: clean
 clean:
-	rm -rf *.o *.dSYM/ ${BINS}
+	rm -rf *.o *.dSYM/ ${BIN}

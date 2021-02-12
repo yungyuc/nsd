@@ -3,7 +3,7 @@
 #include <omp.h>
 
 int main(int, char**) {
-    #pragma omp parallel num_threads(4)
+    #pragma omp parallel
     {
         printf
         (
