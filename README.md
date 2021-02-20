@@ -12,7 +12,7 @@ Copyright 2021, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 
 * You are expected to learn programming languages yourself.  Python is never a problem, but you could find it challenging to self-teach C++.  Students are encouraged to form study groups for practicing C++, and discuss with the instructor and/or the teaching assistant.
 * Grading: homework 30%, mid-term exam: 30%, term project: 40%.
-* There are 14 lectures for the subjects of numerical software developing using Python and C++.
+* There are 12 lectures for the subjects of numerical software developing using Python and C++.
 * There will be 6 homework assignments for you to exercise.  Programming in Python and/or C++ is required.
 * Mid-term examination will be conducted to assess students' understandings to the analytical materials.
 * Term project will be used to assess students' overall coding skills.  Presentation is required.  Failure to present results in **0 point** for this part.  Check [the term project page](https://github.com/yungyuc/nsd/blob/master/notebook/current/term_project.ipynb) before you start.
