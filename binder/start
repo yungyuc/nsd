@@ -1,4 +1,0 @@
-#!/bin/bash
-thiscwd="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
-source $thiscwd/../contrib/envs
-exec "$@"

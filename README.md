@@ -1,12 +1,8 @@
 # Numerical Software Development Course Notes
 
-Copyright 2020, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
+Copyright 2021, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 
 ![Build Status](https://github.com/yungyuc/nsd/workflows/primary/badge.svg)
-
-* 2020 autumn at NCTU: [notebook/20au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/index.ipynb).
-* 2020 spring at NCTU: [notebook/20sp_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20sp_nctu/index.ipynb).
-* 2019 autumn at NCTU: [notebook/19au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/19au_nctu/index.ipynb).
 
 **Objectives**: This course discusses the art to build numerical software, i.e., computer programs applying numerical methods for solving mathematical or physical problems.  We will be using the combination of Python and C++ and related tools (e.g., [bash](https://www.gnu.org/software/bash/), [git](https://git-scm.com), [make](https://www.gnu.org/software/make/), etc.) to learn the modern development processes.  By completing this course, students will acquire the fundamental skills for developing modern numerical software.
 
@@ -19,13 +15,13 @@ Copyright 2020, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 * There are 14 lectures for the subjects of numerical software developing using Python and C++.
 * There will be 6 homework assignments for you to exercise.  Programming in Python and/or C++ is required.
 * Mid-term examination will be conducted to assess students' understandings to the analytical materials.
-* Term project will be used to assess students' overall coding skills.  Presentation is required.  Failure to present results in **0 point** for this part.  Check [the term project page](term_project.ipynb) before you start.
+* Term project will be used to assess students' overall coding skills.  Presentation is required.  Failure to present results in **0 point** for this part.  Check [the term project page](https://github.com/yungyuc/nsd/blob/master/notebook/current/term_project.ipynb) before you start.
 
 # How to study
 
 * This is a practical course.  No textbook is available for this specific interdisciplinary subject.
 * To study the subject, students are required to research with online documents and source code, and write programs to practice.
-* In-class instruction and [course notes](https://yungyuc.github.com/nsd) are provided for guidance.
+* In-class instruction and [course notes](https://yungyuc.github.com/nsd) ([github](https://github.com/yungyuc/nsd/blob/master/notebook/current/index.ipynb)) are provided for guidance.
 * References:
   * Computer Systems: A Programmer's Perspective, Randal E. Bryant and David R. O'Hallaron: https://csapp.cs.cmu.edu/
   * Python documentation: https://docs.python.org/3/
@@ -35,26 +31,26 @@ Copyright 2020, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 
 # Course schedule
 
-* W1 (9/14) Lecture 1: Introduction
-* W2 (9/21) Lecture 2: Fundamental engineering practices
-* W3 (9/28) Lecture 3: Python and numpy (*homework \#1*) (*term project proposal start*)
-* W4 (10/5) Lecture 4: C++ and computer architecture (*homework \#2*)
-* W5 (10/12) Lecture 5: Matrix operations
-* W6 (10/19) Lecture 6: Cache optimization (*homework \#3*) (*term project proposal due*)
-* W7 (10/26) Lecture 7: SIMD
-* W8 (11/2) Mid-term examination
-* W9 (11/9) Lecture 8: Memory management (*homework \#4*)
-* W10 (11/16) Lecture 9: Ownership and smart pointers
-* W11 (11/23) Lecture 10: Modern C++ (*homework \#5*)
-* W12 (11/30) Lecture 11: C++ and C for Python
-* W13 (12/7) Lecture 12: Array code in C++ (*homework \#6*)
-* W14 (12/14) Lecture 13: Array-oriented design
-* W15 (12/21) Lecture 14: Advanced Python
-* W16 (12/28) Term project presentation
-* W17 (1/4) No meeting (optional lecture is not planned)
-* W18 (1/11) No meeting (optional lecture is not planned)
+* W1 (2/22) Unit 1 and Unit 2: Introduction and fundamental engineering practices (*homework \#1*)
+* W2 (3/1) Skip meeting (peace memorial day)
+* W3 (3/8) Unit 3: Python and numpy (*term project proposal start*)
+* W4 (3/15) Unit 4: C++ and computer architecture (*homework \#2*)
+* W5 (3/22) Unit 5: Matrix operations
+* W6 (3/29) Unit 6: Cache optimization (*homework \#3*)
+* W7 (4/5) Skip meeting (spring holiday)
+* M8 (4/12) Mid-term examination
+* W9 (4/19) Unit 7: SIMD (*term project proposal due*)
+* W10 (4/26) Unit 8: Memory management (*homework \#4*)
+* W11 (5/3) Unit 9: Ownership and smart pointers
+* W12 (5/10) Unit 10: Modern C++ (*homework \#5*)
+* W13 (5/17) Unit 11: C++ and C for Python
+* W14 (5/24) Unit 12: Array code in C++ (*homework \#6*)
+* W15 (5/31) Unit 13: Advanced Python
+* W16 (6/7) Term project presentation
+* W17 (6/14) No meeting
+* W18 (6/21) No meeting
 
-# Lecture 1 [Introduction](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/01_introduction/introduction.ipynb)
+# Unit 1 [Introduction](https://github.com/yungyuc/nsd/blob/master/notebook/current/01_introduction/introduction.ipynb)
 
 1. Part 1: What is numerical software
    1. Why develop numerical software
@@ -69,7 +65,7 @@ Copyright 2020, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
    1. Runtime environment: Linux and AWS
    2. Jupyter notebook
 
-# Lecture 2 [Fundamental engineering practices](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/02_engineering/engineering.ipynb)
+# Unit 2 [Fundamental engineering practices](https://github.com/yungyuc/nsd/blob/master/notebook/current/02_engineering/engineering.ipynb)
 
 A large chunk of efforts is spent in the infrastructure for coding.  The key to the engineering system is automation.
 
@@ -89,7 +85,7 @@ A large chunk of efforts is spent in the infrastructure for coding.  The key to 
       2. System time and user time
       3. Python timing tools
 
-# Lecture 3 [Python and numpy](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/03_numpy/numpy.ipynb)
+# Unit 3 [Python and numpy](https://github.com/yungyuc/nsd/blob/master/notebook/current/03_numpy/numpy.ipynb)
 
 Python is a popular choice for the scripting engine that makes the numerical software work as a platform.
 
@@ -110,7 +106,7 @@ The platform works like a library providing data structures and helpers to solve
    2. Linear algebra using numpy and scipy
    3. Package management wtih conda and pip
 
-# Lecture 4 [C++ and computer architecture](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/04_cpp/cpp.ipynb)
+# Unit 4 [C++ and computer architecture](https://github.com/yungyuc/nsd/blob/master/notebook/current/04_cpp/cpp.ipynb)
 
 The low-level code of numerical software must be high-performance.  The industries chose C++ because it can take advantage of everything that a hardware architecture offers while using any level of abstraction.
 
@@ -132,7 +128,7 @@ The low-level code of numerical software must be high-performance.  The industri
    2. std::array, std::list
    3. std::map, std::set, std::unordered_map, std::unordered_set
 
-# Lecture 5 [Matrix operations](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/05_matrix/matrix.ipynb)
+# Unit 5 [Matrix operations](https://github.com/yungyuc/nsd/blob/master/notebook/current/05_matrix/matrix.ipynb)
 
 Matrices are everywhere in numerical analysis.  Arrays are the fundamental data structure and used for matrix-vector, matrix-matrix, and other linear algebraic operations.
 
@@ -149,7 +145,7 @@ Matrices are everywhere in numerical analysis.  Arrays are the fundamental data 
    1. Eigenvalue and singular value problems
    1. Least square problems
 
-# Lecture 6 [Cache optimization](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/06_cache/cache.ipynb)
+# Unit 6 [Cache optimization](https://github.com/yungyuc/nsd/blob/master/notebook/current/06_cache/cache.ipynb)
 
 How cache works, its importance to performance, and optimization with cache.
 
@@ -161,7 +157,7 @@ How cache works, its importance to performance, and optimization with cache.
    4. Array majoring in numpy
 3. Tiling
 
-# Lecture 7 [SIMD](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/07_simd/simd.ipynb)
+# Unit 7 [SIMD](https://github.com/yungyuc/nsd/blob/master/notebook/current/07_simd/simd.ipynb)
 
 Parallelism and x86 assembly for SIMD.
 
@@ -175,7 +171,7 @@ Parallelism and x86 assembly for SIMD.
    3. Symbol table
    4. Inspect assembly: 1, 3, 5 multiplications
 
-# Lecture 8 [Memory management](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/08_mem/mem.ipynb)
+# Unit 8 [Memory management](https://github.com/yungyuc/nsd/blob/master/notebook/current/08_mem/mem.ipynb)
 
 Numerical software tends to use as much memory as a workstation has.  The memory has two major uses: (i) to hold the required huge amount of data, and (ii) to gain speed.
 
@@ -185,7 +181,7 @@ Numerical software tends to use as much memory as a workstation has.  The memory
 4. STL allocator API
 3. Object counter
 
-# Lecture 9 [Ownership and smart pointers](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/09_smart/smart.ipynb)
+# Unit 9 [Ownership and smart pointers](https://github.com/yungyuc/nsd/blob/master/notebook/current/09_smart/smart.ipynb)
 
 Ownership and memory management using C++ smart pointers.
 
@@ -201,7 +197,7 @@ Ownership and memory management using C++ smart pointers.
     2. Get `shared_ptr` from `this`
     3. Cyclic reference and `weak_ptr`
 
-# Lecture 10 [Modern C++](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/10_moderncpp/moderncpp.ipynb)
+# Unit 10 [Modern C++](https://github.com/yungyuc/nsd/blob/master/notebook/current/10_moderncpp/moderncpp.ipynb)
 
 Copy elision and move semantics.  Variadic template and perfect forwarding.  Closure.
 
@@ -223,7 +219,7 @@ Copy elision and move semantics.  Variadic template and perfect forwarding.  Clo
 7. Closure
     1. Comments on functional style
 
-# Lecture 11 [C++ and C for Python](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/11_cpppy/cpppy.ipynb)
+# Unit 11 [C++ and C for Python](https://github.com/yungyuc/nsd/blob/master/notebook/current/11_cpppy/cpppy.ipynb)
 
 Use C++ and C to control the CPython interpreter.
 
@@ -261,16 +257,19 @@ Use C++ and C to control the CPython interpreter.
     2. Small memory optimization
     3. Tracemalloc
 
-# Lecture 12 [Array code in C++](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/12_arraycode/arraycode.ipynb)
+# Unit 12 [Array code in C++](https://github.com/yungyuc/nsd/blob/master/notebook/current/12_arraycode/arraycode.ipynb)
 
-Dissect the array-based code and element-based code and when to use them.
+Dissect the array-based code and element-based code and when to use them.  Software architecture that take advantage of array-based code.
 
 1. Python is slow but easy to write
 2. Speed up by using numpy (still in Python)
 3. Xtensor: write iterative code in C++ speed using arrays
 4. Effect of house-keeping code
+5. Design interface with arrays
+6. Conversion between dynamic and static semantics
+7. Insert profiling code
 
-# Lecture 13 [Array-oriented design](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/13_arraydesign/arraydesign.ipynb)
+# Unit 12 [Array-oriented design](https://github.com/yungyuc/nsd/blob/master/notebook/current/12_arraydesign/arraydesign.ipynb)
 
 Software architecture that take advantage of array-based code.
 
@@ -278,7 +277,7 @@ Software architecture that take advantage of array-based code.
 2. Conversion between dynamic and static semantics
 3. Insert profiling code
 
-# Lecture 14 [Advanced Python](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/14_advpy/advpy.ipynb)
+# Unit 13 [Advanced Python](https://github.com/yungyuc/nsd/blob/master/notebook/current/13_advpy/advpy.ipynb)
 
 Advanced topics in Python programming.
 
@@ -299,4 +298,14 @@ Advanced topics in Python programming.
 
 # Miscellaneous
 
-* NCTU course link: [https://timetable.nctu.edu.tw/?r=main/crsoutline&Acy=109&Sem=1&CrsNo=5285](https://timetable.nctu.edu.tw/?r=main/crsoutline&Acy=109&Sem=1&CrsNo=5285)
+* Readthedocs version: https://yyc.solvcon.net/en/latest/nsd/ (with cross reference).
+* NYCU syllabus link: https://timetable.nycu.edu.tw/?r=main/crsoutline&Acy=109&Sem=2&CrsNo=5301
+* 2020 autumn at NCTU: [notebook/20au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/index.ipynb).
+* 2020 spring at NCTU: [notebook/20sp_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20sp_nctu/index.ipynb).
+* 2019 autumn at NCTU: [notebook/19au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/19au_nctu/index.ipynb).
+
+Command to bootstrap a server on AWS:
+
+```bash
+curl -s https://raw.githubusercontent.com/yungyuc/nsd/master/contrib/install.sh | bash -s setup_aws
+```

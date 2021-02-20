@@ -1,0 +1,5 @@
+*.dSYM/
+*.o
+01_copy
+02_move
+03_accumulate

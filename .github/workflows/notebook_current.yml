@@ -1,0 +1,148 @@
+name: notebook_current
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+        matrix:
+          os: [ubuntu-20.04, macos-10.15]
+
+        fail-fast: false
+
+    steps:
+
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: apt (ubuntu)
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        sudo apt-get -q update
+        sudo apt-get -qy install \
+            curl build-essential make cmake libc6-dev \
+            gcc g++ clang clang-tidy \
+            gfortran intel-mkl-full \
+            python3 python3-pip python3-pytest \
+            python3-numpy python3-scipy python3-pandas python3-matplotlib \
+            jupyter
+
+    - name: brew (macos)
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        brew install make cmake llvm libomp python3 radare2
+
+    - name: pip (ubuntu)
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        sudo pip3 install -U flake8 nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
+        sudo pip3 install -U https://github.com/aldanor/ipybind/tarball/master
+
+    - name: pip (macos)
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        pip3 install -U pip
+        pip3 install -U setuptools
+        pip3 install -U pytest numpy scipy pandas matplotlib jupyter
+        pip3 install -U flake8 nbgitpuller sphinx-gallery notebook jupyterlab rise cxxfilt
+        pip3 install -U https://github.com/aldanor/ipybind/tarball/master
+
+    - name: INSTALL_PREFIX (ubuntu)
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        echo "INSTALL_PREFIX=/usr" >> ${GITHUB_ENV}
+
+    - name: INSTALL_PREFIX (macos)
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        echo "INSTALL_PREFIX=/usr/local" >> ${GITHUB_ENV}
+
+    - name: custom
+      run: |
+        INSTALL_PREFIX=${{ env.INSTALL_PREFIX }}
+        echo "INSTALL_PREFIX=${INSTALL_PREFIX}"
+        #contrib/install.sh radare2 # skip to save time, for now
+        contrib/install.sh pybind11
+        contrib/install.sh xtl
+        contrib/install.sh xsimd
+        contrib/install.sh xtensor
+        contrib/install.sh xtensor_blas
+        contrib/install.sh xtensor_python
+
+    - name: show dependency
+      run: |
+        echo "radare2 path: $(which radare2)"
+        echo "radare2 version: $(radare2 -v)"
+        echo "gcc path: $(which gcc)"
+        echo "gcc version: $(gcc --version)"
+        echo "cmake path: $(which cmake)"
+        echo "cmake version: $(cmake --version)"
+        echo "python3 path: $(which python3)"
+        echo "python3 version: $(python3 --version)"
+        python3 -c 'import numpy ; print("numpy.__version__:", numpy.__version__)'
+        echo "pytest path: $(which pytest)"
+        echo "pytest version: $(pytest --version)"
+        echo "clang-tidy path: $(which clang-tidy)"
+        echo "clang-tidy version: $(clang-tidy -version)"
+        echo "flake8 path: $(which flake8)"
+        echo "flake8 version: $(flake8 --version)"
+
+    - name: run notebook index
+      run: jupyter nbconvert --to notebook --inplace --execute notebook/current/index.ipynb
+
+    - name: 04_cpp
+      run: |
+        make -C notebook/current/04_cpp
+
+    - name: 05_matrix
+      # macos does not have MKL.
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        make -C notebook/current/05_matrix
+
+    - name: 06_cache
+      # macos does not have MKL.
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        make -C notebook/current/06_cache
+
+    - name: 07_simd_mul
+      run: |
+        MYROOT=notebook/current/07_simd/code
+        make -C ${MYROOT} hardware
+        make -C ${MYROOT} clean
+        make -C ${MYROOT}/01_mul run
+        #make -C ${MYROOT}/02_fma run # server not supporting FMA
+
+    - name: 07_simd_mul_r2
+      # ubuntu does not have a working r2.
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        MYROOT=notebook/current/07_simd/code
+        make -C ${MYROOT}/01_mul r2all
+
+    - name: 07_simd_omp
+      run: |
+        MYROOT=notebook/current/07_simd/code
+        make -C ${MYROOT}/03_omp
+        make -C ${MYROOT}/03_omp run
+        [ "$(env OMP_NUM_THREADS=5 make -C ${MYROOT}/03_omp run | grep 'Hello from thread' | wc -l | xargs)" = "5" ]
+
+    - name: 08_mem
+      run: |
+        make -C notebook/current/08_mem
+
+    - name: 09_smart
+      run: |
+        make -C notebook/current/09_smart/01_pointer
+        make -C notebook/current/09_smart/02_shared
+
+    - name: 10_moderncpp
+      run: |
+        make -C notebook/current/10_moderncpp/03_elision
+        make -C notebook/current/10_moderncpp/04_template
+        make -C notebook/current/10_moderncpp/05_lambda

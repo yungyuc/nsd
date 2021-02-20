@@ -1,0 +1,5 @@
+*.dSYM/
+*.o
+01_lambda
+02_stored
+03_closure
