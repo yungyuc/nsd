@@ -298,6 +298,7 @@ Advanced topics in Python programming.
 
 # Miscellaneous
 
+* Readthedocs version: https://yyc.solvcon.net/en/latest/nsd/ (with cross reference).
 * NYCU syllabus link: https://timetable.nycu.edu.tw/?r=main/crsoutline&Acy=109&Sem=2&CrsNo=5301
 * 2020 autumn at NCTU: [notebook/20au_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20au_nctu/index.ipynb).
 * 2020 spring at NCTU: [notebook/20sp_nctu/](https://github.com/yungyuc/nsd/blob/master/notebook/20sp_nctu/index.ipynb).
