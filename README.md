@@ -37,9 +37,9 @@ Copyright 2021, Yung-Yu Chen <yyc@solvcon.net>.  All rights reserved.
 * W4 (3/15) Unit 4: C++ and computer architecture (*homework \#2*)
 * W5 (3/22) Unit 5: Matrix operations
 * W6 (3/29) Unit 6: Cache optimization (*homework \#3*)
-* W7 (4/5) Skip meeting (spring holiday)
-* M8 (4/12) Mid-term examination
-* W9 (4/19) Unit 7: SIMD (*term project proposal due*)
+* W7 (4/5) Skip meeting (spring holiday) (*term project proposal due*)
+* M8 (4/12) Unit 7: SIMD
+* W9 (4/19) Mid-term examination
 * W10 (4/26) Unit 8: Memory management (*homework \#4*)
 * W11 (5/3) Unit 9: Ownership and smart pointers
 * W12 (5/10) Unit 10: Modern C++ (*homework \#5*)
